@@ -29,7 +29,7 @@
 - [x] PySpark Transformations
 - [x] Glue Orchestration & Catalog
 - [x] Parquet Storage Layers in S3
-- [ ] Redshift Cluster & Table Design
+- [x] Redshift Cluster & Table Design
 - [ ] Data Loading into Redshift
 - [ ] Analytics & Validation
 - [ ] Monitoring, Alerts & Cost Control
@@ -93,13 +93,28 @@
     - [x] `location_analysis` - Pickup/dropoff location performance
 - [x] 5.3 Used Glue Crawler to catalog all curated tables in Data Catalog
 
-### 6. Amazon Redshift Cluster & Table Design
-- [ ] 6.1 Launch a small Redshift Serverless endpoint (or smallest RA3 node)
-- [ ] 6.2 Define database, schema and IAM role for COPY
-- [ ] 6.3 Design star schema:
-  - [ ] Fact Table: e.g. trips (with measures: count, total_fare)
-  - [ ] Dimension Tables: time_dim, location_dim, vendor_dim
-- [ ] 6.4 Create DDL scripts for each table (with appropriate sort/dist keys)
+### 6. Amazon Redshift Cluster & Table Design ✅
+- [x] 6.1 Deployed Redshift Serverless infrastructure with Terraform:
+  - [x] Namespace: `cloud-native-analytics-namespace` (Available)
+  - [x] Workgroup: `cloud-native-analytics-workgroup` (32 RPU base capacity)
+  - [x] Database: `analytics_db` with admin user
+  - [x] Security groups, subnet groups, and VPC configuration
+  - [x] IAM role integration for S3 access (`cloud-native-analytics-redshift-role`)
+- [x] 6.2 Created analytics schema with 5 optimized tables:
+  - [x] `daily_summary` - Daily business metrics by day type
+  - [x] `hourly_patterns` - Time-based demand and efficiency analysis
+  - [x] `payment_analysis` - Payment method breakdown and tip analysis
+  - [x] `distance_analysis` - Trip distance categories and fare efficiency
+  - [x] `location_analysis` - Rate code performance and market share
+- [x] 6.3 Implemented enterprise-grade table design:
+  - [x] DISTKEY/SORTKEY optimizations for query performance
+  - [x] Appropriate data types (DECIMAL for currency, DATE for dates)
+  - [x] Compound sort keys for time-series and categorical queries
+- [x] 6.4 Created comprehensive SQL toolkit:
+  - [x] DDL scripts with Redshift-specific optimizations
+  - [x] COPY commands for S3→Redshift data loading
+  - [x] 25+ analytics queries for business insights
+  - [x] Data validation and optimization scripts
 
 ### 7. Data Loading into Redshift
 - [ ] 7.1 Grant Redshift access to S3 via an IAM role
@@ -184,13 +199,16 @@ This project uses a **personal AWS account** (profile: `cloud-native-analytics`)
     
 📋 DATA CATALOG (Glue)
     ↓ All tables discoverable via Athena/Redshift
+    
+🏢 REDSHIFT SERVERLESS (32 RPU capacity)
+    ↓ Enterprise analytics warehouse ready
 ```
 
-### 🎯 Next Steps: Redshift & Analytics (Steps 6-10)
-- Deploy Redshift cluster/serverless
-- Load curated tables into Redshift  
-- Build analytics queries & dashboard
-- Set up monitoring & cost controls
+### 🎯 Next Steps: Data Loading & Analytics (Steps 7-10)
+- Load curated data into Redshift tables
+- Execute analytics queries and validation
+- Build monitoring dashboard & cost controls
+- Document final architecture & demo
 
 ## 📝 Notes & Learnings
 
@@ -205,6 +223,8 @@ This project uses a **personal AWS account** (profile: `cloud-native-analytics`)
 - **Aggregation Job**: 2m 39s for curated tables
 - **Storage Optimization**: 546 partitioned files for efficient querying
 - **Cost Efficiency**: 2 DPU usage on G.1X workers
+- **Redshift Deployment**: 58s infrastructure provisioning
+- **Analytics Readiness**: 32 RPU serverless capacity, 5 optimized tables
 
 ---
 
