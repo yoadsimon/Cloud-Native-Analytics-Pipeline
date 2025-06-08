@@ -28,7 +28,7 @@
 - [x] Raw Data Ingestion
 - [x] PySpark Transformations
 - [x] Glue Orchestration & Catalog
-- [ ] Parquet Storage Layers in S3
+- [x] Parquet Storage Layers in S3
 - [ ] Redshift Cluster & Table Design
 - [ ] Data Loading into Redshift
 - [ ] Analytics & Validation
@@ -80,13 +80,18 @@
   - [x] Daily scheduled trigger (6 AM UTC, disabled for testing)
   - [x] Conditional trigger to run staging crawler after ETL success
 
-### 5. Parquet Storage Layers in S3
-- [ ] 5.1 Confirm that Parquet in `/staging/` uses partitioning (e.g. by date/hour)
-- [ ] 5.2 Implement a second Glue job or step in the same job to:
-  - [ ] Read from `/staging/`
-  - [ ] Perform additional aggregations (e.g. daily summaries)
-  - [ ] Write final Parquet tables to `/curated/`
-- [ ] 5.3 Use the Glue Crawler to register curated tables as well
+### 5. Parquet Storage Layers in S3 ✅
+- [x] 5.1 Confirmed Parquet partitioning in `/staging/` (546 files partitioned by pickup_date/time_of_day_category)
+- [x] 5.2 Implemented curated aggregations Glue job (`cloud-native-analytics-curated-aggregations`):
+  - [x] Resolved partition column conflicts with multiple fallback approaches
+  - [x] Read 3M+ records from `/staging/` in 2m 39s
+  - [x] Created 5 business-ready aggregated tables in `/curated/`:
+    - [x] `daily_summary` - Daily trip metrics by day type
+    - [x] `hourly_patterns` - Hourly analysis by time of day and day type  
+    - [x] `payment_analysis` - Payment method breakdown and tip analysis
+    - [x] `distance_analysis` - Trip distance categories and efficiency metrics
+    - [x] `location_analysis` - Pickup/dropoff location performance
+- [x] 5.3 Used Glue Crawler to catalog all curated tables in Data Catalog
 
 ### 6. Amazon Redshift Cluster & Table Design
 - [ ] 6.1 Launch a small Redshift Serverless endpoint (or smallest RA3 node)
@@ -157,9 +162,49 @@ Cloud-Native-Analytics-Pipeline/
 ### ⚠️ AWS Profile Warning
 This project uses a **personal AWS account** (profile: `cloud-native-analytics`), not your work AWS account. Always verify you're using the correct profile before running AWS commands.
 
+## 📊 Current Progress Summary
+
+### ✅ Completed Pipeline Architecture (Steps 1-5)
+
+```
+📥 RAW DATA (48MB)
+    ↓ NYC Taxi Trip Data (3M records)
+    
+🔄 ETL PROCESSING (Glue Job - 3m 27s)
+    ↓ Data validation, cleaning, enrichment
+    
+📁 STAGING LAYER (546 partitioned files)
+    ↓ Partitioned by pickup_date/time_of_day_category
+    
+📊 AGGREGATION PROCESSING (Glue Job - 2m 39s)  
+    ↓ Business metrics & KPI calculations
+    
+🎯 CURATED LAYER (5 analytics tables)
+    ↓ Ready for BI tools & analytics
+    
+📋 DATA CATALOG (Glue)
+    ↓ All tables discoverable via Athena/Redshift
+```
+
+### 🎯 Next Steps: Redshift & Analytics (Steps 6-10)
+- Deploy Redshift cluster/serverless
+- Load curated tables into Redshift  
+- Build analytics queries & dashboard
+- Set up monitoring & cost controls
+
 ## 📝 Notes & Learnings
 
-_Add your notes, challenges, and key learnings here as you progress through the project_
+### Technical Challenges Solved
+- **Partition Column Conflicts**: Resolved Spark conflicts between partition paths and data columns using multiple fallback approaches (recursiveFileLookup, wildcard patterns, DynamicFrame)
+- **Large-Scale Processing**: Successfully processed 3M+ records with optimized Spark configurations
+- **Infrastructure as Code**: Automated script deployment via Terraform with S3 object management
+- **Error Handling**: Implemented comprehensive logging and exception handling for production reliability
+
+### Key Performance Metrics
+- **ETL Job**: 3m 27s for 3M records (staging)
+- **Aggregation Job**: 2m 39s for curated tables
+- **Storage Optimization**: 546 partitioned files for efficient querying
+- **Cost Efficiency**: 2 DPU usage on G.1X workers
 
 ---
 
