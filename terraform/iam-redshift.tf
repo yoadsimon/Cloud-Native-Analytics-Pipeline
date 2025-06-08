@@ -110,9 +110,38 @@ resource "aws_iam_role_policy_attachment" "redshift_logs_attachment" {
   policy_arn = aws_iam_policy.redshift_logs_policy.arn
 }
 
-# Optional: Attach AWS managed policy for Redshift enhanced VPC routing
-# Uncomment if you plan to use VPC endpoints
-# resource "aws_iam_role_policy_attachment" "redshift_enhanced_vpc" {
-#   role       = aws_iam_role.redshift_role.name
-#   policy_arn = "arn:aws:iam::aws:policy/AmazonRedshiftEnhancedVpcRoutingRole"
-# } 
+# Glue Data Catalog policy for Redshift Spectrum
+data "aws_iam_policy_document" "redshift_glue_policy" {
+  statement {
+    effect = "Allow"
+    actions = [
+      "glue:GetDatabase",
+      "glue:GetDatabases", 
+      "glue:GetTable",
+      "glue:GetTables",
+      "glue:GetPartition",
+      "glue:GetPartitions"
+    ]
+    resources = [
+      "arn:aws:glue:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:catalog",
+      "arn:aws:glue:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:database/${aws_glue_catalog_database.analytics_db.name}",
+      "arn:aws:glue:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:table/${aws_glue_catalog_database.analytics_db.name}/*"
+    ]
+  }
+}
+
+resource "aws_iam_policy" "redshift_glue_policy" {
+  name        = "${local.project_name}-redshift-glue-policy"
+  description = "Glue Data Catalog access for Redshift Spectrum"
+  policy      = data.aws_iam_policy_document.redshift_glue_policy.json
+
+  tags = merge(local.common_tags, {
+    Name    = "${local.project_name}-redshift-glue-policy"
+    Purpose = "Glue Data Catalog access for Redshift"
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "redshift_glue_attachment" {
+  role       = aws_iam_role.redshift_role.name
+  policy_arn = aws_iam_policy.redshift_glue_policy.arn
+} 
