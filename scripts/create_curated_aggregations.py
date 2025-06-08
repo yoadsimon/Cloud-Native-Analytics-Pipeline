@@ -15,6 +15,7 @@ import logging
 from datetime import datetime
 from awsglue.transforms import *
 from awsglue.utils import getResolvedOptions
+from awsglue.dynamicframe import DynamicFrame
 from pyspark.context import SparkContext
 from awsglue.context import GlueContext
 from awsglue.job import Job
@@ -23,7 +24,7 @@ from pyspark.sql.functions import (
     col, when, sum as spark_sum, avg, min, max, count, 
     round as spark_round, stddev, percentile_approx,
     date_format, year, month, dayofmonth, dayofweek,
-    lit, desc, asc
+    lit, desc, asc, to_date, hour
 )
 from pyspark.sql.types import DoubleType, IntegerType, StringType
 
@@ -61,20 +62,39 @@ class NYCTaxiCuratedETL:
         """Read processed data from staging layer."""
         self.logger.info(f"Reading staging data from: {self.input_path}")
         
-        # Create DynamicFrame from staging S3
-        staging_data = self.glue_context.create_dynamic_frame.from_options(
-            format_options={"multiline": False},
-            connection_type="s3",
-            format="parquet",
-            connection_options={
-                "paths": [f"{self.input_path}dataset=nyc_taxi_processed/"],
-                "recurse": True
-            },
-            transformation_ctx="staging_data"
-        )
+        # Use Spark directly to read staging data to avoid DynamicFrame directory scanning issues
+        staging_path = f"{self.input_path}dataset=nyc_taxi_processed/"
+        self.logger.info(f"Reading staging data from: {staging_path}")
         
-        # Convert to DataFrame for aggregations
-        df = staging_data.toDF()
+        # Try different approaches to read partitioned data without conflicts
+        try:
+            # Method 1: Read with explicit partition options
+            df = self.spark.read.option("mergeSchema", "true").option("basePath", staging_path).parquet(staging_path)
+            self.logger.info("Successfully read using Method 1: mergeSchema + basePath")
+        except Exception as e1:
+            self.logger.info(f"Method 1 failed: {e1}")
+            try:
+                # Method 2: Read all files directly without partition information
+                df = self.spark.read.option("recursiveFileLookup", "true").parquet(staging_path)
+                self.logger.info("Successfully read using Method 2: recursiveFileLookup")
+            except Exception as e2:
+                self.logger.info(f"Method 2 failed: {e2}")
+                # Method 3: Read specific partition paths if available
+                df = self.spark.read.parquet(f"{staging_path}*/*/*")
+                self.logger.info("Successfully read using Method 3: wildcard path")
+        
+        # Log initial schema to understand partition column conflicts
+        self.logger.info(f"Initial DataFrame columns: {df.columns}")
+        self.logger.info(f"Initial DataFrame schema: {df.schema}")
+        
+        # Drop partition columns if they exist as regular columns to avoid conflicts
+        partition_columns = ['pickup_date', 'time_of_day_category']
+        existing_partition_cols = [col_name for col_name in partition_columns if col_name in df.columns]
+        
+        if existing_partition_cols:
+            self.logger.info(f"Dropping existing partition columns to avoid conflicts: {existing_partition_cols}")
+            df = df.drop(*existing_partition_cols)
+            self.logger.info(f"Columns after dropping partitions: {df.columns}")
         
         # Handle timestamp compatibility issues
         # Convert any TimestampNTZ columns to regular timestamps
@@ -82,7 +102,22 @@ class NYCTaxiCuratedETL:
             if "TimestampNTZ" in str(field.dataType):
                 df = df.withColumn(field.name, col(field.name).cast("timestamp"))
         
+        # Re-create partition columns from actual data to ensure consistency
+        self.logger.info("Creating pickup_date column from tpep_pickup_datetime")
+        df = df.withColumn("pickup_date", col("tpep_pickup_datetime").cast("date"))
+        
+        self.logger.info("Creating pickup_hour and time_of_day_category columns from tpep_pickup_datetime")
+        df = df.withColumn("pickup_hour", hour(col("tpep_pickup_datetime")))
+        df = df.withColumn(
+            "time_of_day_category",
+            when((col("pickup_hour") >= 6) & (col("pickup_hour") < 12), "Morning")
+            .when((col("pickup_hour") >= 12) & (col("pickup_hour") < 18), "Afternoon")
+            .when((col("pickup_hour") >= 18) & (col("pickup_hour") < 22), "Evening")
+            .otherwise("Night")
+        )
+        
         self.logger.info(f"Staging data loaded: {df.count()} records")
+        self.logger.info(f"Available columns: {', '.join(df.columns[:10])}..." if len(df.columns) > 10 else f"Available columns: {', '.join(df.columns)}")
         return df
     
     def create_daily_summary(self, df):

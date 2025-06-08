@@ -63,6 +63,7 @@ logs/
 job_config.json
 
 # Data files (exclude large datasets)
-data/*.parquet
+data/staging/
+data/raw/*.parquet
 data/*.csv
 !data/metadata/ 

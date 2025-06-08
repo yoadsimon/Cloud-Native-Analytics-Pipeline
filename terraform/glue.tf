@@ -76,7 +76,7 @@ resource "aws_glue_job" "nyc_taxi_etl" {
   number_of_workers = 2
 
   command {
-    script_location = "s3://${aws_s3_bucket.data_pipeline.bucket}/scripts/transform_nyc_taxi_glue_v2.py"
+    script_location = "s3://${aws_s3_bucket.data_pipeline.bucket}/scripts/transform_nyc_taxi_glue.py"
     python_version  = "3"
   }
 

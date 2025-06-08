@@ -174,4 +174,30 @@ resource "aws_s3_object" "scripts_folder" {
   tags = merge(local.common_tags, {
     Purpose = "ETL scripts storage"
   })
-} 
+}
+
+# Upload NYC Taxi ETL script
+resource "aws_s3_object" "nyc_taxi_etl_script" {
+  bucket = aws_s3_bucket.data_pipeline.id
+  key    = "scripts/transform_nyc_taxi_glue.py"
+  source = "../scripts/transform_nyc_taxi_glue.py"
+  etag   = filemd5("../scripts/transform_nyc_taxi_glue.py")
+
+  tags = merge(local.common_tags, {
+    Purpose = "NYC Taxi ETL transformation script"
+  })
+}
+
+# Upload Curated Aggregations script (main version with conflict resolution)
+resource "aws_s3_object" "curated_aggregations_script" {
+  bucket = aws_s3_bucket.data_pipeline.id
+  key    = "scripts/create_curated_aggregations.py"
+  source = "../scripts/create_curated_aggregations.py"
+  etag   = filemd5("../scripts/create_curated_aggregations.py")
+
+  tags = merge(local.common_tags, {
+    Purpose = "Curated layer aggregations script with partition conflict resolution"
+  })
+}
+
+ 
