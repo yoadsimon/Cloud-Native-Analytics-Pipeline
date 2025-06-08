@@ -1,0 +1,44 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# AWS Profile Enforcement Rule
+
+## MANDATORY AWS CONFIGURATION:
+- **ALWAYS** use the `cloud-native-analytics` AWS profile for this project
+- **NEVER** use default AWS profile or any other profile
+- **ALWAYS** include `--profile cloud-native-analytics` in AWS CLI commands
+- **OR** set `export AWS_PROFILE=cloud-native-analytics` environment variable
+
+## Required Commands Format:
+```bash
+# Correct - with profile flag
+aws s3 ls --profile cloud-native-analytics
+aws glue create-job --profile cloud-native-analytics
+
+# Correct - with environment variable
+export AWS_PROFILE=cloud-native-analytics
+aws s3 ls
+aws glue create-job
+
+# WRONG - never use default profile
+aws s3 ls  # This could use work AWS account!
+```
+
+## Setup Check:
+Before any AWS operations, verify profile:
+```bash
+aws sts get-caller-identity --profile cloud-native-analytics
+```
+
+## Profile Details:
+- Profile Name: `cloud-native-analytics`
+- Account: Personal AWS account (NOT work account)
+- Region: `us-east-1`
+- Purpose: Cloud Native Analytics Pipeline project only
+
+## Emergency Profile Switch:
+Use helper script: `./scripts/set-aws-profile.sh`
+
+**CRITICAL**: This project uses a personal AWS account separate from work AWS. Always double-check which account you're using!

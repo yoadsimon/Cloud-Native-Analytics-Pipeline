@@ -1,0 +1,73 @@
+{
+  "dataset_name": "nyc_taxi_yellow",
+  "description": "NYC Yellow Taxi Trip Records from TLC (Taxi & Limousine Commission)",
+  "source": {
+    "url": "https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page",
+    "provider": "NYC Taxi & Limousine Commission",
+    "license": "Public Domain"
+  },
+  "data_quality": {
+    "total_records": 3007526,
+    "file_size_mb": 48,
+    "null_percentage": 6.2,
+    "date_range": {
+      "start": "2024-02-01",
+      "end": "2024-02-29"
+    }
+  },
+  "schema": {
+    "VendorID": "int32 - Taxi vendor identifier",
+    "tpep_pickup_datetime": "datetime64[us] - Trip pickup timestamp",
+    "tpep_dropoff_datetime": "datetime64[us] - Trip dropoff timestamp", 
+    "passenger_count": "float64 - Number of passengers (6.2% nulls)",
+    "trip_distance": "float64 - Trip distance in miles",
+    "RatecodeID": "float64 - Rate code (1=Standard, 2=JFK, 3=Newark, etc.)",
+    "store_and_fwd_flag": "object - Store and forward flag (Y/N)",
+    "PULocationID": "int32 - Pickup location ID (TLC Taxi Zone)",
+    "DOLocationID": "int32 - Dropoff location ID (TLC Taxi Zone)",
+    "payment_type": "int64 - Payment method (1=Credit, 2=Cash, etc.)",
+    "fare_amount": "float64 - Fare amount in USD",
+    "extra": "float64 - Extra charges",
+    "mta_tax": "float64 - MTA tax",
+    "tip_amount": "float64 - Tip amount", 
+    "tolls_amount": "float64 - Tolls amount",
+    "improvement_surcharge": "float64 - Improvement surcharge",
+    "total_amount": "float64 - Total trip amount",
+    "congestion_surcharge": "float64 - Congestion pricing surcharge",
+    "Airport_fee": "float64 - Airport fee"
+  },
+  "business_metrics": {
+    "avg_trip_distance_miles": 3.86,
+    "avg_fare_amount_usd": 18.05,
+    "avg_total_amount_usd": 26.62,
+    "avg_passenger_count": 1.3,
+    "unique_pickup_locations": 254,
+    "unique_dropoff_locations": 260
+  },
+  "s3_location": {
+    "bucket": "cloud-native-analytics-pipeline-d8e6ca17",
+    "key": "raw/dataset=nyc_taxi/year=2024/month=02/yellow_tripdata_2024-02.parquet",
+    "partition_scheme": "dataset/year/month"
+  },
+  "analytics_potential": [
+    "Time series analysis of trip patterns",
+    "Geospatial analysis of pickup/dropoff hotspots", 
+    "Fare optimization and demand forecasting",
+    "Payment method preferences analysis",
+    "Peak hour and seasonal demand patterns",
+    "Distance vs fare correlation analysis"
+  ],
+  "data_engineering_challenges": [
+    "Null value handling (6.2% in several columns)",
+    "Date range validation (some historical outliers)",
+    "Location ID mapping to actual coordinates",
+    "Payment type code interpretation",
+    "Large scale processing (3M+ records per month)"
+  ],
+  "upload_metadata": {
+    "uploaded_by": "cloud-native-analytics-pipeline",
+    "upload_date": "2025-06-08",
+    "file_format": "parquet",
+    "compression": "snappy"
+  }
+} 

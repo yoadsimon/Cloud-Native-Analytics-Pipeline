@@ -1,0 +1,32 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Step-by-Step Development Workflow
+
+## MANDATORY PROCESS:
+1. **Complete ONE subtask at a time** from the README.md checklist
+2. **STOP after each completed task** 
+3. **Mark the checkbox** in README.md (change `[ ]` to `[x]`)
+4. **Explain what was accomplished** before moving to the next task:
+   - What was done
+   - What files were created/modified
+   - What was learned or discovered
+   - Any challenges encountered
+   - Next steps
+
+## Rules:
+- Never skip the explanation step
+- Always update the README.md progress tracking
+- One subtask per iteration - no rushing ahead
+- Document lessons learned and decisions made
+- Commit changes after each major milestone
+
+## Example Flow:
+1. ✅ Complete subtask (e.g., "Install AWS CLI")
+2. ✅ Update README.md checkbox
+3. ✅ Explain: "Installed AWS CLI v2.x, configured with credentials, tested with `aws s3 ls`"
+4. ✅ Move to next subtask
+
+This ensures thorough understanding and creates a clear development trail for interview discussions.
