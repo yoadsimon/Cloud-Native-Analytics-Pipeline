@@ -105,4 +105,25 @@ output "project_name" {
 output "resource_tags" {
   description = "Common tags applied to all resources"
   value       = local.common_tags
+}
+
+# Redshift Outputs
+output "redshift_namespace_name" {
+  description = "Redshift Serverless namespace name"
+  value       = aws_redshiftserverless_namespace.analytics_namespace.namespace_name
+}
+
+output "redshift_workgroup_name" {
+  description = "Redshift Serverless workgroup name"
+  value       = aws_redshiftserverless_workgroup.analytics_workgroup.workgroup_name
+}
+
+output "redshift_endpoint" {
+  description = "Redshift Serverless endpoint"
+  value       = aws_redshiftserverless_workgroup.analytics_workgroup.endpoint
+}
+
+output "redshift_database_name" {
+  description = "Redshift database name"
+  value       = aws_redshiftserverless_namespace.analytics_namespace.db_name
 } 

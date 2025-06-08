@@ -52,4 +52,18 @@ variable "expiration_days" {
   description = "Days to expire old objects"
   type        = number
   default     = 365
+}
+
+# Redshift Configuration Variables
+variable "redshift_admin_username" {
+  description = "Admin username for Redshift cluster"
+  type        = string
+  default     = "admin"
+}
+
+variable "redshift_admin_password" {
+  description = "Admin password for Redshift cluster"
+  type        = string
+  sensitive   = true
+  default     = "TempPassword123!" # Change this to a secure password
 } 
