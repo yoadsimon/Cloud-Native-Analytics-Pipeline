@@ -1,0 +1,13 @@
+# Environment Variables for Cloud-Native Analytics Dashboard
+# Copy this file to .env and update with your actual values
+
+# Redshift Connection
+REDSHIFT_PASSWORD=TempPassword123!
+
+# AWS Configuration (if needed)
+AWS_REGION=us-east-1
+AWS_PROFILE=cloud-native-analytics
+
+# Dashboard Configuration
+STREAMLIT_SERVER_PORT=8501
+STREAMLIT_SERVER_ADDRESS=0.0.0.0 
