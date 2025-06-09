@@ -32,7 +32,7 @@
 - [x] Redshift Cluster & Table Design
 - [x] Data Loading into Redshift
 - [x] Analytics & Validation
-- [ ] Monitoring, Alerts & Cost Control
+- [x] Monitoring, Alerts & Cost Control
 - [ ] Documentation & Demo Dashboard
 
 ## 🔨 Detailed Step-by-Step Plan
@@ -146,11 +146,25 @@
   - [x] Revenue validation between daily_summary and payment_analysis
   - [x] Business logic verification for all aggregations
 
-### 9. Monitoring, Alerts & Cost Control
-- [ ] 9.1 Enable CloudWatch metrics for Glue job durations and error counts
-- [ ] 9.2 Configure alarms for job failures or runtime > KPI threshold
-- [ ] 9.3 Set AWS Budget alerts to notify you if spend approaches free-tier limits
-- [ ] 9.4 Tear down or pause Redshift when idle (via a Lambda script or manually)
+### 9. Monitoring, Alerts & Cost Control ✅
+- [x] 9.1 Deployed CloudWatch monitoring infrastructure with Terraform:
+  - [x] SNS topic for pipeline alerts (`cloud-native-analytics-pipeline-alerts`)
+  - [x] Metric alarms for Glue job failures and duration (>10 minutes)
+  - [x] Redshift CPU utilization monitoring (>80% threshold)
+  - [x] Daily spend alerts with $10 threshold
+- [x] 9.2 Created comprehensive CloudWatch dashboard:
+  - [x] Glue ETL job performance metrics visualization
+  - [x] Redshift performance (CPU utilization, compute capacity)
+  - [x] Cost tracking with estimated daily charges
+- [x] 9.3 Implemented AWS Budget cost controls:
+  - [x] Monthly budget: $50 with 80%, 100%, 110% alert thresholds
+  - [x] Daily budget: $5 with $3 alert threshold
+  - [x] Email notifications for budget alerts
+- [x] 9.4 Created operational monitoring scripts:
+  - [x] Python health monitoring (`scripts/monitor_pipeline.py`)
+  - [x] Quick shell-based health check (`scripts/quick_health_check.sh`)
+  - [x] SQL monitoring queries (`sql/step9_monitoring_queries.sql`)
+  - [x] Data quality validation and performance tracking
 
 ### 10. Documentation & Demo Dashboard
 - [ ] 10.1 Write a README that describes architecture, data flow, and how to run each step
@@ -250,5 +264,3 @@ This project uses a **personal AWS account** (profile: `cloud-native-analytics`)
 - **Analytics Readiness**: 32 RPU serverless capacity, 5 optimized tables
 
 ---
-
-**Good luck with your Similarweb interview preparation!** 🚀 

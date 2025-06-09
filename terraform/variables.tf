@@ -66,4 +66,10 @@ variable "redshift_admin_password" {
   type        = string
   sensitive   = true
   default     = "TempPassword123!" # Change this to a secure password
+}
+
+variable "alert_email" {
+  description = "Email address for pipeline alerts and notifications"
+  type        = string
+  default     = "admin@example.com" # Change this to your email address
 } 
