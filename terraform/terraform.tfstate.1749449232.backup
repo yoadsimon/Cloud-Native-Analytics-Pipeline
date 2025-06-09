@@ -1,0 +1,122 @@
+{
+  "version": 4,
+  "terraform_version": "1.12.1",
+  "serial": 146,
+  "lineage": "a419fa60-0742-b81c-ad25-7659d423f1d5",
+  "outputs": {},
+  "resources": [
+    {
+      "mode": "managed",
+      "type": "aws_s3_bucket",
+      "name": "data_pipeline",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "acceleration_status": "",
+            "acl": null,
+            "arn": "arn:aws:s3:::cloud-native-analytics-pipeline-d8e6ca17",
+            "bucket": "cloud-native-analytics-pipeline-d8e6ca17",
+            "bucket_domain_name": "cloud-native-analytics-pipeline-d8e6ca17.s3.amazonaws.com",
+            "bucket_prefix": "",
+            "bucket_regional_domain_name": "cloud-native-analytics-pipeline-d8e6ca17.s3.us-east-1.amazonaws.com",
+            "cors_rule": [],
+            "force_destroy": false,
+            "grant": [
+              {
+                "id": "e73a8f75ab7ac7b4a7ada30f0507ea24437e6a612a20221f84dda3462def7c97",
+                "permissions": [
+                  "FULL_CONTROL"
+                ],
+                "type": "CanonicalUser",
+                "uri": ""
+              }
+            ],
+            "hosted_zone_id": "Z3AQBSTGFYJSTF",
+            "id": "cloud-native-analytics-pipeline-d8e6ca17",
+            "lifecycle_rule": [],
+            "logging": [],
+            "object_lock_configuration": [],
+            "object_lock_enabled": false,
+            "policy": "",
+            "region": "us-east-1",
+            "replication_configuration": [],
+            "request_payer": "BucketOwner",
+            "server_side_encryption_configuration": [
+              {
+                "rule": [
+                  {
+                    "apply_server_side_encryption_by_default": [
+                      {
+                        "kms_master_key_id": "",
+                        "sse_algorithm": "AES256"
+                      }
+                    ],
+                    "bucket_key_enabled": false
+                  }
+                ]
+              }
+            ],
+            "tags": {
+              "DataLayers": "raw-staging-curated",
+              "Environment": "dev",
+              "Name": "cloud-native-analytics-data-bucket",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "Data-Pipeline-Storage"
+            },
+            "tags_all": {
+              "DataLayers": "raw-staging-curated",
+              "Environment": "dev",
+              "Name": "cloud-native-analytics-data-bucket",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "Data-Pipeline-Storage"
+            },
+            "timeouts": null,
+            "versioning": [
+              {
+                "enabled": false,
+                "mfa_delete": false
+              }
+            ],
+            "website": [],
+            "website_domain": null,
+            "website_endpoint": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjM2MDAwMDAwMDAwMDAsInJlYWQiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "random_id.bucket_suffix"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "random_id",
+      "name": "bucket_suffix",
+      "provider": "provider[\"registry.terraform.io/hashicorp/random\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "b64_std": "2ObKFw==",
+            "b64_url": "2ObKFw",
+            "byte_length": 4,
+            "dec": "3639003671",
+            "hex": "d8e6ca17",
+            "id": "2ObKFw",
+            "keepers": null,
+            "prefix": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0
+        }
+      ]
+    }
+  ],
+  "check_results": null
+}

@@ -1,0 +1,3546 @@
+{
+  "version": 4,
+  "terraform_version": "1.12.1",
+  "serial": 74,
+  "lineage": "a419fa60-0742-b81c-ad25-7659d423f1d5",
+  "outputs": {
+    "aws_account_id": {
+      "value": "439530517237",
+      "type": "string"
+    },
+    "aws_region": {
+      "value": "us-east-1",
+      "type": "string"
+    },
+    "glue_database_name": {
+      "value": "cloud-native-analytics-analytics-db",
+      "type": "string"
+    },
+    "glue_etl_job_name": {
+      "value": "cloud-native-analytics-nyc-taxi-etl",
+      "type": "string"
+    },
+    "glue_etl_role_arn": {
+      "value": "arn:aws:iam::439530517237:role/cloud-native-analytics-glue-etl-role",
+      "type": "string"
+    },
+    "glue_etl_role_name": {
+      "value": "cloud-native-analytics-glue-etl-role",
+      "type": "string"
+    },
+    "glue_raw_crawler_name": {
+      "value": "cloud-native-analytics-raw-crawler",
+      "type": "string"
+    },
+    "glue_staging_crawler_name": {
+      "value": "cloud-native-analytics-staging-crawler",
+      "type": "string"
+    },
+    "project_name": {
+      "value": "cloud-native-analytics",
+      "type": "string"
+    },
+    "redshift_database_name": {
+      "value": "analytics_db",
+      "type": "string"
+    },
+    "redshift_endpoint": {
+      "value": [
+        {
+          "address": "cloud-native-analytics-workgroup.439530517237.us-east-1.redshift-serverless.amazonaws.com",
+          "port": 5439,
+          "vpc_endpoint": [
+            {
+              "network_interface": [
+                {
+                  "availability_zone": "us-east-1b",
+                  "network_interface_id": "eni-00b49fa03ffca3d64",
+                  "private_ip_address": "172.31.87.8",
+                  "subnet_id": "subnet-0b06d948d98b48f7d"
+                },
+                {
+                  "availability_zone": "us-east-1d",
+                  "network_interface_id": "eni-08089f1f771006482",
+                  "private_ip_address": "172.31.43.228",
+                  "subnet_id": "subnet-07e2ae6027e823edd"
+                },
+                {
+                  "availability_zone": "us-east-1a",
+                  "network_interface_id": "eni-0c94ca09012622a70",
+                  "private_ip_address": "172.31.10.216",
+                  "subnet_id": "subnet-0dab829cad03e2b28"
+                }
+              ],
+              "vpc_endpoint_id": "vpce-0dd5e4d79f6ee4c50",
+              "vpc_id": "vpc-0986ed387be5230fb"
+            }
+          ]
+        }
+      ],
+      "type": [
+        "list",
+        [
+          "object",
+          {
+            "address": "string",
+            "port": "number",
+            "vpc_endpoint": [
+              "list",
+              [
+                "object",
+                {
+                  "network_interface": [
+                    "list",
+                    [
+                      "object",
+                      {
+                        "availability_zone": "string",
+                        "network_interface_id": "string",
+                        "private_ip_address": "string",
+                        "subnet_id": "string"
+                      }
+                    ]
+                  ],
+                  "vpc_endpoint_id": "string",
+                  "vpc_id": "string"
+                }
+              ]
+            ]
+          }
+        ]
+      ]
+    },
+    "redshift_namespace_name": {
+      "value": "cloud-native-analytics-namespace",
+      "type": "string"
+    },
+    "redshift_role_arn": {
+      "value": "arn:aws:iam::439530517237:role/cloud-native-analytics-redshift-role",
+      "type": "string"
+    },
+    "redshift_role_name": {
+      "value": "cloud-native-analytics-redshift-role",
+      "type": "string"
+    },
+    "redshift_workgroup_name": {
+      "value": "cloud-native-analytics-workgroup",
+      "type": "string"
+    },
+    "resource_tags": {
+      "value": {
+        "Environment": "dev",
+        "Owner": "yoadsimon",
+        "Project": "Cloud-Native-Analytics-Pipeline",
+        "Purpose": "Data Engineering Portfolio"
+      },
+      "type": [
+        "object",
+        {
+          "Environment": "string",
+          "Owner": "string",
+          "Project": "string",
+          "Purpose": "string"
+        }
+      ]
+    },
+    "s3_bucket_arn": {
+      "value": "arn:aws:s3:::cloud-native-analytics-pipeline-d8e6ca17",
+      "type": "string"
+    },
+    "s3_bucket_name": {
+      "value": "cloud-native-analytics-pipeline-d8e6ca17",
+      "type": "string"
+    },
+    "s3_bucket_region": {
+      "value": "us-east-1",
+      "type": "string"
+    },
+    "s3_curated_path": {
+      "value": "s3://cloud-native-analytics-pipeline-d8e6ca17/curated/",
+      "type": "string"
+    },
+    "s3_logs_path": {
+      "value": "s3://cloud-native-analytics-pipeline-d8e6ca17/logs/",
+      "type": "string"
+    },
+    "s3_raw_path": {
+      "value": "s3://cloud-native-analytics-pipeline-d8e6ca17/raw/",
+      "type": "string"
+    },
+    "s3_scripts_path": {
+      "value": "s3://cloud-native-analytics-pipeline-d8e6ca17/scripts/",
+      "type": "string"
+    },
+    "s3_staging_path": {
+      "value": "s3://cloud-native-analytics-pipeline-d8e6ca17/staging/",
+      "type": "string"
+    }
+  },
+  "resources": [
+    {
+      "mode": "data",
+      "type": "aws_caller_identity",
+      "name": "current",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "account_id": "439530517237",
+            "arn": "arn:aws:iam::439530517237:root",
+            "id": "439530517237",
+            "user_id": "439530517237"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0
+        }
+      ]
+    },
+    {
+      "mode": "data",
+      "type": "aws_iam_policy_document",
+      "name": "glue_catalog_policy",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "2512089178",
+            "json": "{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Effect\": \"Allow\",\n      \"Action\": [\n        \"glue:UpdateTable\",\n        \"glue:UpdatePartition\",\n        \"glue:UpdateDatabase\",\n        \"glue:GetTables\",\n        \"glue:GetTable\",\n        \"glue:GetPartitions\",\n        \"glue:GetPartition\",\n        \"glue:GetDatabases\",\n        \"glue:GetDatabase\",\n        \"glue:DeleteTable\",\n        \"glue:DeletePartition\",\n        \"glue:DeleteDatabase\",\n        \"glue:CreateTable\",\n        \"glue:CreatePartition\",\n        \"glue:CreateDatabase\",\n        \"glue:BatchUpdatePartition\",\n        \"glue:BatchDeletePartition\",\n        \"glue:BatchCreatePartition\"\n      ],\n      \"Resource\": [\n        \"arn:aws:glue:us-east-1:439530517237:table/cloud-native-analytics*/*\",\n        \"arn:aws:glue:us-east-1:439530517237:database/cloud-native-analytics*\",\n        \"arn:aws:glue:us-east-1:439530517237:catalog\"\n      ]\n    }\n  ]\n}",
+            "minified_json": "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"glue:UpdateTable\",\"glue:UpdatePartition\",\"glue:UpdateDatabase\",\"glue:GetTables\",\"glue:GetTable\",\"glue:GetPartitions\",\"glue:GetPartition\",\"glue:GetDatabases\",\"glue:GetDatabase\",\"glue:DeleteTable\",\"glue:DeletePartition\",\"glue:DeleteDatabase\",\"glue:CreateTable\",\"glue:CreatePartition\",\"glue:CreateDatabase\",\"glue:BatchUpdatePartition\",\"glue:BatchDeletePartition\",\"glue:BatchCreatePartition\"],\"Resource\":[\"arn:aws:glue:us-east-1:439530517237:table/cloud-native-analytics*/*\",\"arn:aws:glue:us-east-1:439530517237:database/cloud-native-analytics*\",\"arn:aws:glue:us-east-1:439530517237:catalog\"]}]}",
+            "override_json": null,
+            "override_policy_documents": null,
+            "policy_id": null,
+            "source_json": null,
+            "source_policy_documents": null,
+            "statement": [
+              {
+                "actions": [
+                  "glue:BatchCreatePartition",
+                  "glue:BatchDeletePartition",
+                  "glue:BatchUpdatePartition",
+                  "glue:CreateDatabase",
+                  "glue:CreatePartition",
+                  "glue:CreateTable",
+                  "glue:DeleteDatabase",
+                  "glue:DeletePartition",
+                  "glue:DeleteTable",
+                  "glue:GetDatabase",
+                  "glue:GetDatabases",
+                  "glue:GetPartition",
+                  "glue:GetPartitions",
+                  "glue:GetTable",
+                  "glue:GetTables",
+                  "glue:UpdateDatabase",
+                  "glue:UpdatePartition",
+                  "glue:UpdateTable"
+                ],
+                "condition": [],
+                "effect": "Allow",
+                "not_actions": [],
+                "not_principals": [],
+                "not_resources": [],
+                "principals": [],
+                "resources": [
+                  "arn:aws:glue:us-east-1:439530517237:catalog",
+                  "arn:aws:glue:us-east-1:439530517237:database/cloud-native-analytics*",
+                  "arn:aws:glue:us-east-1:439530517237:table/cloud-native-analytics*/*"
+                ],
+                "sid": ""
+              }
+            ],
+            "version": "2012-10-17"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0
+        }
+      ]
+    },
+    {
+      "mode": "data",
+      "type": "aws_iam_policy_document",
+      "name": "glue_logs_policy",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "722775302",
+            "json": "{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Effect\": \"Allow\",\n      \"Action\": [\n        \"logs:PutLogEvents\",\n        \"logs:DescribeLogStreams\",\n        \"logs:DescribeLogGroups\",\n        \"logs:CreateLogStream\",\n        \"logs:CreateLogGroup\"\n      ],\n      \"Resource\": \"arn:aws:logs:us-east-1:439530517237:log-group:/aws-glue/*\"\n    }\n  ]\n}",
+            "minified_json": "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"logs:PutLogEvents\",\"logs:DescribeLogStreams\",\"logs:DescribeLogGroups\",\"logs:CreateLogStream\",\"logs:CreateLogGroup\"],\"Resource\":\"arn:aws:logs:us-east-1:439530517237:log-group:/aws-glue/*\"}]}",
+            "override_json": null,
+            "override_policy_documents": null,
+            "policy_id": null,
+            "source_json": null,
+            "source_policy_documents": null,
+            "statement": [
+              {
+                "actions": [
+                  "logs:CreateLogGroup",
+                  "logs:CreateLogStream",
+                  "logs:DescribeLogGroups",
+                  "logs:DescribeLogStreams",
+                  "logs:PutLogEvents"
+                ],
+                "condition": [],
+                "effect": "Allow",
+                "not_actions": [],
+                "not_principals": [],
+                "not_resources": [],
+                "principals": [],
+                "resources": [
+                  "arn:aws:logs:us-east-1:439530517237:log-group:/aws-glue/*"
+                ],
+                "sid": ""
+              }
+            ],
+            "version": "2012-10-17"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0
+        }
+      ]
+    },
+    {
+      "mode": "data",
+      "type": "aws_iam_policy_document",
+      "name": "glue_s3_policy",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "1957045625",
+            "json": "{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Effect\": \"Allow\",\n      \"Action\": [\n        \"s3:PutObject\",\n        \"s3:ListBucket\",\n        \"s3:GetObject\",\n        \"s3:GetBucketLocation\",\n        \"s3:DeleteObject\"\n      ],\n      \"Resource\": [\n        \"arn:aws:s3:::cloud-native-analytics-pipeline-d8e6ca17/*\",\n        \"arn:aws:s3:::cloud-native-analytics-pipeline-d8e6ca17\"\n      ]\n    },\n    {\n      \"Effect\": \"Allow\",\n      \"Action\": \"s3:ListAllMyBuckets\",\n      \"Resource\": \"*\"\n    }\n  ]\n}",
+            "minified_json": "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"s3:PutObject\",\"s3:ListBucket\",\"s3:GetObject\",\"s3:GetBucketLocation\",\"s3:DeleteObject\"],\"Resource\":[\"arn:aws:s3:::cloud-native-analytics-pipeline-d8e6ca17/*\",\"arn:aws:s3:::cloud-native-analytics-pipeline-d8e6ca17\"]},{\"Effect\":\"Allow\",\"Action\":\"s3:ListAllMyBuckets\",\"Resource\":\"*\"}]}",
+            "override_json": null,
+            "override_policy_documents": null,
+            "policy_id": null,
+            "source_json": null,
+            "source_policy_documents": null,
+            "statement": [
+              {
+                "actions": [
+                  "s3:DeleteObject",
+                  "s3:GetBucketLocation",
+                  "s3:GetObject",
+                  "s3:ListBucket",
+                  "s3:PutObject"
+                ],
+                "condition": [],
+                "effect": "Allow",
+                "not_actions": [],
+                "not_principals": [],
+                "not_resources": [],
+                "principals": [],
+                "resources": [
+                  "arn:aws:s3:::cloud-native-analytics-pipeline-d8e6ca17",
+                  "arn:aws:s3:::cloud-native-analytics-pipeline-d8e6ca17/*"
+                ],
+                "sid": ""
+              },
+              {
+                "actions": [
+                  "s3:ListAllMyBuckets"
+                ],
+                "condition": [],
+                "effect": "Allow",
+                "not_actions": [],
+                "not_principals": [],
+                "not_resources": [],
+                "principals": [],
+                "resources": [
+                  "*"
+                ],
+                "sid": ""
+              }
+            ],
+            "version": "2012-10-17"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0
+        }
+      ]
+    },
+    {
+      "mode": "data",
+      "type": "aws_iam_policy_document",
+      "name": "glue_trust_policy",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "2681768870",
+            "json": "{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Effect\": \"Allow\",\n      \"Action\": \"sts:AssumeRole\",\n      \"Principal\": {\n        \"Service\": \"glue.amazonaws.com\"\n      }\n    }\n  ]\n}",
+            "minified_json": "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"sts:AssumeRole\",\"Principal\":{\"Service\":\"glue.amazonaws.com\"}}]}",
+            "override_json": null,
+            "override_policy_documents": null,
+            "policy_id": null,
+            "source_json": null,
+            "source_policy_documents": null,
+            "statement": [
+              {
+                "actions": [
+                  "sts:AssumeRole"
+                ],
+                "condition": [],
+                "effect": "Allow",
+                "not_actions": [],
+                "not_principals": [],
+                "not_resources": [],
+                "principals": [
+                  {
+                    "identifiers": [
+                      "glue.amazonaws.com"
+                    ],
+                    "type": "Service"
+                  }
+                ],
+                "resources": [],
+                "sid": ""
+              }
+            ],
+            "version": "2012-10-17"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0
+        }
+      ]
+    },
+    {
+      "mode": "data",
+      "type": "aws_iam_policy_document",
+      "name": "redshift_glue_policy",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "2267570346",
+            "json": "{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Effect\": \"Allow\",\n      \"Action\": [\n        \"glue:GetTables\",\n        \"glue:GetTable\",\n        \"glue:GetPartitions\",\n        \"glue:GetPartition\",\n        \"glue:GetDatabases\",\n        \"glue:GetDatabase\"\n      ],\n      \"Resource\": [\n        \"arn:aws:glue:us-east-1:439530517237:table/cloud-native-analytics-analytics-db/*\",\n        \"arn:aws:glue:us-east-1:439530517237:database/cloud-native-analytics-analytics-db\",\n        \"arn:aws:glue:us-east-1:439530517237:catalog\"\n      ]\n    }\n  ]\n}",
+            "minified_json": "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"glue:GetTables\",\"glue:GetTable\",\"glue:GetPartitions\",\"glue:GetPartition\",\"glue:GetDatabases\",\"glue:GetDatabase\"],\"Resource\":[\"arn:aws:glue:us-east-1:439530517237:table/cloud-native-analytics-analytics-db/*\",\"arn:aws:glue:us-east-1:439530517237:database/cloud-native-analytics-analytics-db\",\"arn:aws:glue:us-east-1:439530517237:catalog\"]}]}",
+            "override_json": null,
+            "override_policy_documents": null,
+            "policy_id": null,
+            "source_json": null,
+            "source_policy_documents": null,
+            "statement": [
+              {
+                "actions": [
+                  "glue:GetDatabase",
+                  "glue:GetDatabases",
+                  "glue:GetPartition",
+                  "glue:GetPartitions",
+                  "glue:GetTable",
+                  "glue:GetTables"
+                ],
+                "condition": [],
+                "effect": "Allow",
+                "not_actions": [],
+                "not_principals": [],
+                "not_resources": [],
+                "principals": [],
+                "resources": [
+                  "arn:aws:glue:us-east-1:439530517237:catalog",
+                  "arn:aws:glue:us-east-1:439530517237:database/cloud-native-analytics-analytics-db",
+                  "arn:aws:glue:us-east-1:439530517237:table/cloud-native-analytics-analytics-db/*"
+                ],
+                "sid": ""
+              }
+            ],
+            "version": "2012-10-17"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0
+        }
+      ]
+    },
+    {
+      "mode": "data",
+      "type": "aws_iam_policy_document",
+      "name": "redshift_logs_policy",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "1818169494",
+            "json": "{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Effect\": \"Allow\",\n      \"Action\": [\n        \"logs:PutLogEvents\",\n        \"logs:DescribeLogStreams\",\n        \"logs:DescribeLogGroups\",\n        \"logs:CreateLogStream\",\n        \"logs:CreateLogGroup\"\n      ],\n      \"Resource\": \"arn:aws:logs:us-east-1:439530517237:log-group:/aws/redshift/*\"\n    }\n  ]\n}",
+            "minified_json": "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"logs:PutLogEvents\",\"logs:DescribeLogStreams\",\"logs:DescribeLogGroups\",\"logs:CreateLogStream\",\"logs:CreateLogGroup\"],\"Resource\":\"arn:aws:logs:us-east-1:439530517237:log-group:/aws/redshift/*\"}]}",
+            "override_json": null,
+            "override_policy_documents": null,
+            "policy_id": null,
+            "source_json": null,
+            "source_policy_documents": null,
+            "statement": [
+              {
+                "actions": [
+                  "logs:CreateLogGroup",
+                  "logs:CreateLogStream",
+                  "logs:DescribeLogGroups",
+                  "logs:DescribeLogStreams",
+                  "logs:PutLogEvents"
+                ],
+                "condition": [],
+                "effect": "Allow",
+                "not_actions": [],
+                "not_principals": [],
+                "not_resources": [],
+                "principals": [],
+                "resources": [
+                  "arn:aws:logs:us-east-1:439530517237:log-group:/aws/redshift/*"
+                ],
+                "sid": ""
+              }
+            ],
+            "version": "2012-10-17"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0
+        }
+      ]
+    },
+    {
+      "mode": "data",
+      "type": "aws_iam_policy_document",
+      "name": "redshift_s3_policy",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "786522803",
+            "json": "{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Effect\": \"Allow\",\n      \"Action\": [\n        \"s3:ListBucket\",\n        \"s3:GetObject\",\n        \"s3:GetBucketLocation\"\n      ],\n      \"Resource\": [\n        \"arn:aws:s3:::cloud-native-analytics-pipeline-d8e6ca17/*\",\n        \"arn:aws:s3:::cloud-native-analytics-pipeline-d8e6ca17\"\n      ]\n    },\n    {\n      \"Effect\": \"Allow\",\n      \"Action\": \"s3:GetObject\",\n      \"Resource\": \"arn:aws:s3:::cloud-native-analytics-pipeline-d8e6ca17/curated/*\"\n    },\n    {\n      \"Effect\": \"Allow\",\n      \"Action\": \"s3:ListAllMyBuckets\",\n      \"Resource\": \"*\"\n    }\n  ]\n}",
+            "minified_json": "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"s3:ListBucket\",\"s3:GetObject\",\"s3:GetBucketLocation\"],\"Resource\":[\"arn:aws:s3:::cloud-native-analytics-pipeline-d8e6ca17/*\",\"arn:aws:s3:::cloud-native-analytics-pipeline-d8e6ca17\"]},{\"Effect\":\"Allow\",\"Action\":\"s3:GetObject\",\"Resource\":\"arn:aws:s3:::cloud-native-analytics-pipeline-d8e6ca17/curated/*\"},{\"Effect\":\"Allow\",\"Action\":\"s3:ListAllMyBuckets\",\"Resource\":\"*\"}]}",
+            "override_json": null,
+            "override_policy_documents": null,
+            "policy_id": null,
+            "source_json": null,
+            "source_policy_documents": null,
+            "statement": [
+              {
+                "actions": [
+                  "s3:GetBucketLocation",
+                  "s3:GetObject",
+                  "s3:ListBucket"
+                ],
+                "condition": [],
+                "effect": "Allow",
+                "not_actions": [],
+                "not_principals": [],
+                "not_resources": [],
+                "principals": [],
+                "resources": [
+                  "arn:aws:s3:::cloud-native-analytics-pipeline-d8e6ca17",
+                  "arn:aws:s3:::cloud-native-analytics-pipeline-d8e6ca17/*"
+                ],
+                "sid": ""
+              },
+              {
+                "actions": [
+                  "s3:GetObject"
+                ],
+                "condition": [],
+                "effect": "Allow",
+                "not_actions": [],
+                "not_principals": [],
+                "not_resources": [],
+                "principals": [],
+                "resources": [
+                  "arn:aws:s3:::cloud-native-analytics-pipeline-d8e6ca17/curated/*"
+                ],
+                "sid": ""
+              },
+              {
+                "actions": [
+                  "s3:ListAllMyBuckets"
+                ],
+                "condition": [],
+                "effect": "Allow",
+                "not_actions": [],
+                "not_principals": [],
+                "not_resources": [],
+                "principals": [],
+                "resources": [
+                  "*"
+                ],
+                "sid": ""
+              }
+            ],
+            "version": "2012-10-17"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0
+        }
+      ]
+    },
+    {
+      "mode": "data",
+      "type": "aws_iam_policy_document",
+      "name": "redshift_trust_policy",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "277058087",
+            "json": "{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Effect\": \"Allow\",\n      \"Action\": \"sts:AssumeRole\",\n      \"Principal\": {\n        \"Service\": \"redshift.amazonaws.com\"\n      }\n    }\n  ]\n}",
+            "minified_json": "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Action\":\"sts:AssumeRole\",\"Principal\":{\"Service\":\"redshift.amazonaws.com\"}}]}",
+            "override_json": null,
+            "override_policy_documents": null,
+            "policy_id": null,
+            "source_json": null,
+            "source_policy_documents": null,
+            "statement": [
+              {
+                "actions": [
+                  "sts:AssumeRole"
+                ],
+                "condition": [],
+                "effect": "Allow",
+                "not_actions": [],
+                "not_principals": [],
+                "not_resources": [],
+                "principals": [
+                  {
+                    "identifiers": [
+                      "redshift.amazonaws.com"
+                    ],
+                    "type": "Service"
+                  }
+                ],
+                "resources": [],
+                "sid": ""
+              }
+            ],
+            "version": "2012-10-17"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0
+        }
+      ]
+    },
+    {
+      "mode": "data",
+      "type": "aws_region",
+      "name": "current",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "description": "US East (N. Virginia)",
+            "endpoint": "ec2.us-east-1.amazonaws.com",
+            "id": "us-east-1",
+            "name": "us-east-1"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0
+        }
+      ]
+    },
+    {
+      "mode": "data",
+      "type": "aws_subnets",
+      "name": "default",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "filter": [
+              {
+                "name": "vpc-id",
+                "values": [
+                  "vpc-0986ed387be5230fb"
+                ]
+              }
+            ],
+            "id": "us-east-1",
+            "ids": [
+              "subnet-08b4cc7550d62a208",
+              "subnet-07e2ae6027e823edd",
+              "subnet-0497912c11166021b",
+              "subnet-0b06d948d98b48f7d",
+              "subnet-0139ac30f912ef245",
+              "subnet-0dab829cad03e2b28"
+            ],
+            "tags": null,
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0
+        }
+      ]
+    },
+    {
+      "mode": "data",
+      "type": "aws_vpc",
+      "name": "default",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:ec2:us-east-1:439530517237:vpc/vpc-0986ed387be5230fb",
+            "cidr_block": "172.31.0.0/16",
+            "cidr_block_associations": [
+              {
+                "association_id": "vpc-cidr-assoc-059096ed2ec881c8d",
+                "cidr_block": "172.31.0.0/16",
+                "state": "associated"
+              }
+            ],
+            "default": true,
+            "dhcp_options_id": "dopt-046ef9a5ef82e3fc2",
+            "enable_dns_hostnames": true,
+            "enable_dns_support": true,
+            "enable_network_address_usage_metrics": false,
+            "filter": null,
+            "id": "vpc-0986ed387be5230fb",
+            "instance_tenancy": "default",
+            "ipv6_association_id": "",
+            "ipv6_cidr_block": "",
+            "main_route_table_id": "rtb-06cccc4de9d702062",
+            "owner_id": "439530517237",
+            "state": null,
+            "tags": {},
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_budgets_budget",
+      "name": "daily_pipeline_budget",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "account_id": "439530517237",
+            "arn": "arn:aws:budgets::439530517237:budget/cloud-native-analytics-daily-budget",
+            "auto_adjust_data": [],
+            "budget_type": "COST",
+            "cost_filter": [],
+            "cost_types": [
+              {
+                "include_credit": true,
+                "include_discount": true,
+                "include_other_subscription": true,
+                "include_recurring": true,
+                "include_refund": true,
+                "include_subscription": true,
+                "include_support": true,
+                "include_tax": true,
+                "include_upfront": true,
+                "use_amortized": false,
+                "use_blended": false
+              }
+            ],
+            "id": "439530517237:cloud-native-analytics-daily-budget",
+            "limit_amount": "5.0",
+            "limit_unit": "USD",
+            "name": "cloud-native-analytics-daily-budget",
+            "name_prefix": "",
+            "notification": [
+              {
+                "comparison_operator": "GREATER_THAN",
+                "notification_type": "ACTUAL",
+                "subscriber_email_addresses": [
+                  "admin@example.com"
+                ],
+                "subscriber_sns_topic_arns": [],
+                "threshold": 3,
+                "threshold_type": "ABSOLUTE_VALUE"
+              }
+            ],
+            "planned_limit": [],
+            "tags": {
+              "Environment": "dev",
+              "Name": "cloud-native-analytics-daily-budget",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "Daily cost monitoring"
+            },
+            "tags_all": {
+              "Environment": "dev",
+              "Name": "cloud-native-analytics-daily-budget",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "Daily cost monitoring"
+            },
+            "time_period_end": "2087-06-15_00:00",
+            "time_period_start": "2025-06-09_00:00",
+            "time_unit": "DAILY"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "bnVsbA=="
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_budgets_budget",
+      "name": "pipeline_budget",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "account_id": "439530517237",
+            "arn": "arn:aws:budgets::439530517237:budget/cloud-native-analytics-budget",
+            "auto_adjust_data": [],
+            "budget_type": "COST",
+            "cost_filter": [],
+            "cost_types": [
+              {
+                "include_credit": true,
+                "include_discount": true,
+                "include_other_subscription": true,
+                "include_recurring": true,
+                "include_refund": true,
+                "include_subscription": true,
+                "include_support": true,
+                "include_tax": true,
+                "include_upfront": true,
+                "use_amortized": false,
+                "use_blended": false
+              }
+            ],
+            "id": "439530517237:cloud-native-analytics-budget",
+            "limit_amount": "50.0",
+            "limit_unit": "USD",
+            "name": "cloud-native-analytics-budget",
+            "name_prefix": "",
+            "notification": [
+              {
+                "comparison_operator": "GREATER_THAN",
+                "notification_type": "ACTUAL",
+                "subscriber_email_addresses": [
+                  "admin@example.com"
+                ],
+                "subscriber_sns_topic_arns": [],
+                "threshold": 110,
+                "threshold_type": "PERCENTAGE"
+              },
+              {
+                "comparison_operator": "GREATER_THAN",
+                "notification_type": "ACTUAL",
+                "subscriber_email_addresses": [
+                  "admin@example.com"
+                ],
+                "subscriber_sns_topic_arns": [],
+                "threshold": 80,
+                "threshold_type": "PERCENTAGE"
+              },
+              {
+                "comparison_operator": "GREATER_THAN",
+                "notification_type": "FORECASTED",
+                "subscriber_email_addresses": [
+                  "admin@example.com"
+                ],
+                "subscriber_sns_topic_arns": [],
+                "threshold": 100,
+                "threshold_type": "PERCENTAGE"
+              }
+            ],
+            "planned_limit": [],
+            "tags": {
+              "Environment": "dev",
+              "Name": "cloud-native-analytics-budget",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "Cost monitoring and control"
+            },
+            "tags_all": {
+              "Environment": "dev",
+              "Name": "cloud-native-analytics-budget",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "Cost monitoring and control"
+            },
+            "time_period_end": "2087-06-15_00:00",
+            "time_period_start": "2025-06-01_00:00",
+            "time_unit": "MONTHLY"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "bnVsbA=="
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_cloudwatch_dashboard",
+      "name": "pipeline_dashboard",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "dashboard_arn": "arn:aws:cloudwatch::439530517237:dashboard/cloud-native-analytics-pipeline-dashboard",
+            "dashboard_body": "{\"widgets\":[{\"height\":6,\"properties\":{\"metrics\":[[\"Glue\",\"glue.driver.aggregate.numCompletedTasks\",\"JobName\",\"cloud-native-analytics-nyc-taxi-etl\"],[\"Glue\",\"glue.driver.aggregate.numFailedTasks\",\"JobName\",\"cloud-native-analytics-nyc-taxi-etl\"]],\"period\":300,\"region\":\"us-east-1\",\"stacked\":false,\"title\":\"Glue ETL Job Performance\",\"view\":\"timeSeries\"},\"type\":\"metric\",\"width\":12,\"x\":0,\"y\":0},{\"height\":6,\"properties\":{\"metrics\":[[\"AWS/Redshift-Serverless\",\"CPUUtilization\",\"WorkgroupName\",\"cloud-native-analytics-workgroup\"],[\"AWS/Redshift-Serverless\",\"ComputeCapacity\",\"WorkgroupName\",\"cloud-native-analytics-workgroup\"]],\"period\":300,\"region\":\"us-east-1\",\"stacked\":false,\"title\":\"Redshift Performance\",\"view\":\"timeSeries\"},\"type\":\"metric\",\"width\":12,\"x\":0,\"y\":6},{\"height\":6,\"properties\":{\"metrics\":[[\"AWS/Billing\",\"EstimatedCharges\",\"Currency\",\"USD\"]],\"period\":86400,\"region\":\"us-east-1\",\"stacked\":false,\"title\":\"Estimated Daily Charges\",\"view\":\"timeSeries\"},\"type\":\"metric\",\"width\":12,\"x\":0,\"y\":12}]}",
+            "dashboard_name": "cloud-native-analytics-pipeline-dashboard",
+            "id": "cloud-native-analytics-pipeline-dashboard"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "bnVsbA==",
+          "dependencies": [
+            "aws_glue_catalog_database.analytics_db",
+            "aws_glue_job.nyc_taxi_etl",
+            "aws_iam_role.glue_etl_role",
+            "aws_iam_role.redshift_role",
+            "aws_redshiftserverless_namespace.analytics_namespace",
+            "aws_redshiftserverless_workgroup.analytics_workgroup",
+            "aws_s3_bucket.data_pipeline",
+            "aws_security_group.redshift_sg",
+            "data.aws_iam_policy_document.glue_trust_policy",
+            "data.aws_iam_policy_document.redshift_trust_policy",
+            "data.aws_subnets.default",
+            "data.aws_vpc.default",
+            "random_id.bucket_suffix"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_cloudwatch_metric_alarm",
+      "name": "glue_etl_failures",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "actions_enabled": true,
+            "alarm_actions": [
+              "arn:aws:sns:us-east-1:439530517237:cloud-native-analytics-pipeline-alerts"
+            ],
+            "alarm_description": "This metric monitors glue etl job failures",
+            "alarm_name": "cloud-native-analytics-glue-etl-failures",
+            "arn": "arn:aws:cloudwatch:us-east-1:439530517237:alarm:cloud-native-analytics-glue-etl-failures",
+            "comparison_operator": "GreaterThanThreshold",
+            "datapoints_to_alarm": 0,
+            "dimensions": {
+              "JobName": "cloud-native-analytics-nyc-taxi-etl"
+            },
+            "evaluate_low_sample_count_percentiles": "",
+            "evaluation_periods": 1,
+            "extended_statistic": "",
+            "id": "cloud-native-analytics-glue-etl-failures",
+            "insufficient_data_actions": null,
+            "metric_name": "glue.driver.aggregate.numFailedTasks",
+            "metric_query": [],
+            "namespace": "Glue",
+            "ok_actions": null,
+            "period": 300,
+            "statistic": "Sum",
+            "tags": {
+              "Environment": "dev",
+              "Name": "cloud-native-analytics-glue-etl-failures",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "Data Engineering Portfolio"
+            },
+            "tags_all": {
+              "Environment": "dev",
+              "Name": "cloud-native-analytics-glue-etl-failures",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "Data Engineering Portfolio"
+            },
+            "threshold": 0,
+            "threshold_metric_id": "",
+            "treat_missing_data": "missing",
+            "unit": ""
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJzY2hlbWFfdmVyc2lvbiI6IjEifQ==",
+          "dependencies": [
+            "aws_glue_catalog_database.analytics_db",
+            "aws_glue_job.nyc_taxi_etl",
+            "aws_iam_role.glue_etl_role",
+            "aws_s3_bucket.data_pipeline",
+            "aws_sns_topic.pipeline_alerts",
+            "data.aws_iam_policy_document.glue_trust_policy",
+            "random_id.bucket_suffix"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_glue_catalog_database",
+      "name": "analytics_db",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:glue:us-east-1:439530517237:database/cloud-native-analytics-analytics-db",
+            "catalog_id": "439530517237",
+            "create_table_default_permission": [
+              {
+                "permissions": [
+                  "ALL"
+                ],
+                "principal": [
+                  {
+                    "data_lake_principal_identifier": "IAM_ALLOWED_PRINCIPALS"
+                  }
+                ]
+              }
+            ],
+            "description": "Database for NYC taxi analytics pipeline",
+            "federated_database": [],
+            "id": "439530517237:cloud-native-analytics-analytics-db",
+            "location_uri": "",
+            "name": "cloud-native-analytics-analytics-db",
+            "parameters": {},
+            "tags": {
+              "Environment": "dev",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "Data Engineering Portfolio"
+            },
+            "tags_all": {
+              "Environment": "dev",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "Data Engineering Portfolio"
+            },
+            "target_database": []
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "bnVsbA=="
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_glue_crawler",
+      "name": "curated_crawler",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:glue:us-east-1:439530517237:crawler/cloud-native-analytics-curated-crawler",
+            "catalog_target": [],
+            "classifiers": [],
+            "configuration": "{\"Version\":1.0,\"CrawlerOutput\":{\"Partitions\":{\"AddOrUpdateBehavior\":\"InheritFromTable\"},\"Tables\":{\"AddOrUpdateBehavior\":\"MergeNewColumns\"}},\"Grouping\":{\"TableGroupingPolicy\":\"CombineCompatibleSchemas\"}}",
+            "database_name": "cloud-native-analytics-analytics-db",
+            "delta_target": [],
+            "description": "Crawler for curated aggregated data",
+            "dynamodb_target": [],
+            "hudi_target": [],
+            "iceberg_target": [],
+            "id": "cloud-native-analytics-curated-crawler",
+            "jdbc_target": [],
+            "lake_formation_configuration": [
+              {
+                "account_id": "",
+                "use_lake_formation_credentials": false
+              }
+            ],
+            "lineage_configuration": [
+              {
+                "crawler_lineage_settings": "DISABLE"
+              }
+            ],
+            "mongodb_target": [],
+            "name": "cloud-native-analytics-curated-crawler",
+            "recrawl_policy": [
+              {
+                "recrawl_behavior": "CRAWL_EVERYTHING"
+              }
+            ],
+            "role": "cloud-native-analytics-glue-etl-role",
+            "s3_target": [
+              {
+                "connection_name": "",
+                "dlq_event_queue_arn": "",
+                "event_queue_arn": "",
+                "exclusions": [],
+                "path": "s3://cloud-native-analytics-pipeline-d8e6ca17/curated/",
+                "sample_size": 0
+              }
+            ],
+            "schedule": "",
+            "schema_change_policy": [
+              {
+                "delete_behavior": "DEPRECATE_IN_DATABASE",
+                "update_behavior": "UPDATE_IN_DATABASE"
+              }
+            ],
+            "security_configuration": "",
+            "table_prefix": "",
+            "tags": {
+              "Environment": "dev",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "Data Engineering Portfolio"
+            },
+            "tags_all": {
+              "Environment": "dev",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "Data Engineering Portfolio"
+            }
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "bnVsbA==",
+          "dependencies": [
+            "aws_glue_catalog_database.analytics_db",
+            "aws_iam_role.glue_etl_role",
+            "aws_s3_bucket.data_pipeline",
+            "data.aws_iam_policy_document.glue_trust_policy",
+            "random_id.bucket_suffix"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_glue_crawler",
+      "name": "raw_crawler",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:glue:us-east-1:439530517237:crawler/cloud-native-analytics-raw-crawler",
+            "catalog_target": [],
+            "classifiers": [],
+            "configuration": "{\"Version\":1.0,\"CrawlerOutput\":{\"Partitions\":{\"AddOrUpdateBehavior\":\"InheritFromTable\"},\"Tables\":{\"AddOrUpdateBehavior\":\"MergeNewColumns\"}},\"Grouping\":{\"TableGroupingPolicy\":\"CombineCompatibleSchemas\"}}",
+            "database_name": "cloud-native-analytics-analytics-db",
+            "delta_target": [],
+            "description": "Crawler for raw NYC taxi data",
+            "dynamodb_target": [],
+            "hudi_target": [],
+            "iceberg_target": [],
+            "id": "cloud-native-analytics-raw-crawler",
+            "jdbc_target": [],
+            "lake_formation_configuration": [
+              {
+                "account_id": "",
+                "use_lake_formation_credentials": false
+              }
+            ],
+            "lineage_configuration": [
+              {
+                "crawler_lineage_settings": "DISABLE"
+              }
+            ],
+            "mongodb_target": [],
+            "name": "cloud-native-analytics-raw-crawler",
+            "recrawl_policy": [
+              {
+                "recrawl_behavior": "CRAWL_EVERYTHING"
+              }
+            ],
+            "role": "cloud-native-analytics-glue-etl-role",
+            "s3_target": [
+              {
+                "connection_name": "",
+                "dlq_event_queue_arn": "",
+                "event_queue_arn": "",
+                "exclusions": [],
+                "path": "s3://cloud-native-analytics-pipeline-d8e6ca17/raw/",
+                "sample_size": 0
+              }
+            ],
+            "schedule": "",
+            "schema_change_policy": [
+              {
+                "delete_behavior": "DEPRECATE_IN_DATABASE",
+                "update_behavior": "UPDATE_IN_DATABASE"
+              }
+            ],
+            "security_configuration": "",
+            "table_prefix": "",
+            "tags": {
+              "Environment": "dev",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "Data Engineering Portfolio"
+            },
+            "tags_all": {
+              "Environment": "dev",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "Data Engineering Portfolio"
+            }
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "bnVsbA==",
+          "dependencies": [
+            "aws_glue_catalog_database.analytics_db",
+            "aws_iam_role.glue_etl_role",
+            "aws_s3_bucket.data_pipeline",
+            "data.aws_iam_policy_document.glue_trust_policy",
+            "random_id.bucket_suffix"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_glue_crawler",
+      "name": "staging_crawler",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:glue:us-east-1:439530517237:crawler/cloud-native-analytics-staging-crawler",
+            "catalog_target": [],
+            "classifiers": [],
+            "configuration": "{\"Version\":1.0,\"CrawlerOutput\":{\"Partitions\":{\"AddOrUpdateBehavior\":\"InheritFromTable\"},\"Tables\":{\"AddOrUpdateBehavior\":\"MergeNewColumns\"}},\"Grouping\":{\"TableGroupingPolicy\":\"CombineCompatibleSchemas\"}}",
+            "database_name": "cloud-native-analytics-analytics-db",
+            "delta_target": [],
+            "description": "Crawler for staging layer Parquet data",
+            "dynamodb_target": [],
+            "hudi_target": [],
+            "iceberg_target": [],
+            "id": "cloud-native-analytics-staging-crawler",
+            "jdbc_target": [],
+            "lake_formation_configuration": [
+              {
+                "account_id": "",
+                "use_lake_formation_credentials": false
+              }
+            ],
+            "lineage_configuration": [
+              {
+                "crawler_lineage_settings": "DISABLE"
+              }
+            ],
+            "mongodb_target": [],
+            "name": "cloud-native-analytics-staging-crawler",
+            "recrawl_policy": [
+              {
+                "recrawl_behavior": "CRAWL_EVERYTHING"
+              }
+            ],
+            "role": "cloud-native-analytics-glue-etl-role",
+            "s3_target": [
+              {
+                "connection_name": "",
+                "dlq_event_queue_arn": "",
+                "event_queue_arn": "",
+                "exclusions": [],
+                "path": "s3://cloud-native-analytics-pipeline-d8e6ca17/staging/",
+                "sample_size": 0
+              }
+            ],
+            "schedule": "",
+            "schema_change_policy": [
+              {
+                "delete_behavior": "DEPRECATE_IN_DATABASE",
+                "update_behavior": "UPDATE_IN_DATABASE"
+              }
+            ],
+            "security_configuration": "",
+            "table_prefix": "",
+            "tags": {
+              "Environment": "dev",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "Data Engineering Portfolio"
+            },
+            "tags_all": {
+              "Environment": "dev",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "Data Engineering Portfolio"
+            }
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "bnVsbA==",
+          "dependencies": [
+            "aws_glue_catalog_database.analytics_db",
+            "aws_iam_role.glue_etl_role",
+            "aws_s3_bucket.data_pipeline",
+            "data.aws_iam_policy_document.glue_trust_policy",
+            "random_id.bucket_suffix"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_glue_job",
+      "name": "curated_aggregations",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:glue:us-east-1:439530517237:job/cloud-native-analytics-curated-aggregations",
+            "command": [
+              {
+                "name": "glueetl",
+                "python_version": "3",
+                "runtime": "",
+                "script_location": "s3://cloud-native-analytics-pipeline-d8e6ca17/scripts/create_curated_aggregations.py"
+              }
+            ],
+            "connections": [],
+            "default_arguments": {
+              "--DATABASE_NAME": "cloud-native-analytics-analytics-db",
+              "--INPUT_S3_PATH": "s3://cloud-native-analytics-pipeline-d8e6ca17/staging/",
+              "--OUTPUT_S3_PATH": "s3://cloud-native-analytics-pipeline-d8e6ca17/curated/",
+              "--TempDir": "s3://cloud-native-analytics-pipeline-d8e6ca17/temp/",
+              "--class": "GlueApp",
+              "--enable-continuous-cloudwatch-log": "true",
+              "--enable-glue-datacatalog": "true",
+              "--enable-job-insights": "true",
+              "--enable-metrics": "true",
+              "--enable-spark-ui": "true",
+              "--job-language": "python",
+              "--spark-event-logs-path": "s3://cloud-native-analytics-pipeline-d8e6ca17/logs/spark-logs/"
+            },
+            "description": "PySpark job for creating curated business aggregations",
+            "execution_class": "",
+            "execution_property": [
+              {
+                "max_concurrent_runs": 1
+              }
+            ],
+            "glue_version": "4.0",
+            "id": "cloud-native-analytics-curated-aggregations",
+            "job_run_queuing_enabled": false,
+            "maintenance_window": "",
+            "max_capacity": 2,
+            "max_retries": 1,
+            "name": "cloud-native-analytics-curated-aggregations",
+            "non_overridable_arguments": {},
+            "notification_property": [],
+            "number_of_workers": 2,
+            "role_arn": "arn:aws:iam::439530517237:role/cloud-native-analytics-glue-etl-role",
+            "security_configuration": "",
+            "source_control_details": [],
+            "tags": {
+              "Environment": "dev",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "Data Engineering Portfolio"
+            },
+            "tags_all": {
+              "Environment": "dev",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "Data Engineering Portfolio"
+            },
+            "timeout": 30,
+            "worker_type": "G.1X"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "bnVsbA==",
+          "dependencies": [
+            "aws_glue_catalog_database.analytics_db",
+            "aws_iam_role.glue_etl_role",
+            "aws_s3_bucket.data_pipeline",
+            "data.aws_iam_policy_document.glue_trust_policy",
+            "random_id.bucket_suffix"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_glue_job",
+      "name": "nyc_taxi_etl",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:glue:us-east-1:439530517237:job/cloud-native-analytics-nyc-taxi-etl",
+            "command": [
+              {
+                "name": "glueetl",
+                "python_version": "3",
+                "runtime": "",
+                "script_location": "s3://cloud-native-analytics-pipeline-d8e6ca17/scripts/transform_nyc_taxi_glue.py"
+              }
+            ],
+            "connections": [],
+            "default_arguments": {
+              "--DATABASE_NAME": "cloud-native-analytics-analytics-db",
+              "--INPUT_S3_PATH": "s3://cloud-native-analytics-pipeline-d8e6ca17/raw/",
+              "--OUTPUT_S3_PATH": "s3://cloud-native-analytics-pipeline-d8e6ca17/staging/",
+              "--TempDir": "s3://cloud-native-analytics-pipeline-d8e6ca17/temp/",
+              "--class": "GlueApp",
+              "--enable-continuous-cloudwatch-log": "true",
+              "--enable-glue-datacatalog": "true",
+              "--enable-job-insights": "true",
+              "--enable-metrics": "true",
+              "--enable-spark-ui": "true",
+              "--job-language": "python",
+              "--spark-event-logs-path": "s3://cloud-native-analytics-pipeline-d8e6ca17/logs/spark-logs/"
+            },
+            "description": "PySpark ETL job for NYC taxi data transformation",
+            "execution_class": "",
+            "execution_property": [
+              {
+                "max_concurrent_runs": 1
+              }
+            ],
+            "glue_version": "4.0",
+            "id": "cloud-native-analytics-nyc-taxi-etl",
+            "job_run_queuing_enabled": false,
+            "maintenance_window": "",
+            "max_capacity": 2,
+            "max_retries": 1,
+            "name": "cloud-native-analytics-nyc-taxi-etl",
+            "non_overridable_arguments": {},
+            "notification_property": [],
+            "number_of_workers": 2,
+            "role_arn": "arn:aws:iam::439530517237:role/cloud-native-analytics-glue-etl-role",
+            "security_configuration": "",
+            "source_control_details": [],
+            "tags": {
+              "Environment": "dev",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "Data Engineering Portfolio"
+            },
+            "tags_all": {
+              "Environment": "dev",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "Data Engineering Portfolio"
+            },
+            "timeout": 60,
+            "worker_type": "G.1X"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "bnVsbA==",
+          "dependencies": [
+            "aws_glue_catalog_database.analytics_db",
+            "aws_iam_role.glue_etl_role",
+            "aws_s3_bucket.data_pipeline",
+            "data.aws_iam_policy_document.glue_trust_policy",
+            "random_id.bucket_suffix"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_glue_trigger",
+      "name": "curated_aggregation_trigger",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "actions": [
+              {
+                "arguments": {},
+                "crawler_name": "",
+                "job_name": "cloud-native-analytics-curated-aggregations",
+                "notification_property": [],
+                "security_configuration": "",
+                "timeout": 0
+              }
+            ],
+            "arn": "arn:aws:glue:us-east-1:439530517237:trigger/cloud-native-analytics-curated-aggregation-trigger",
+            "description": "Run curated aggregations after staging crawler completes",
+            "enabled": true,
+            "event_batching_condition": [],
+            "id": "cloud-native-analytics-curated-aggregation-trigger",
+            "name": "cloud-native-analytics-curated-aggregation-trigger",
+            "predicate": [
+              {
+                "conditions": [
+                  {
+                    "crawl_state": "SUCCEEDED",
+                    "crawler_name": "cloud-native-analytics-staging-crawler",
+                    "job_name": "",
+                    "logical_operator": "EQUALS",
+                    "state": ""
+                  }
+                ],
+                "logical": "AND"
+              }
+            ],
+            "schedule": "",
+            "start_on_creation": null,
+            "state": "ACTIVATED",
+            "tags": {
+              "Environment": "dev",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "Data Engineering Portfolio"
+            },
+            "tags_all": {
+              "Environment": "dev",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "Data Engineering Portfolio"
+            },
+            "timeouts": null,
+            "type": "CONDITIONAL",
+            "workflow_name": ""
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozMDAwMDAwMDAwMDAsImRlbGV0ZSI6MzAwMDAwMDAwMDAwLCJ1cGRhdGUiOjMwMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "aws_glue_catalog_database.analytics_db",
+            "aws_glue_crawler.staging_crawler",
+            "aws_glue_job.curated_aggregations",
+            "aws_iam_role.glue_etl_role",
+            "aws_s3_bucket.data_pipeline",
+            "data.aws_iam_policy_document.glue_trust_policy",
+            "random_id.bucket_suffix"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_glue_trigger",
+      "name": "daily_etl_trigger",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "actions": [
+              {
+                "arguments": {},
+                "crawler_name": "",
+                "job_name": "cloud-native-analytics-nyc-taxi-etl",
+                "notification_property": [],
+                "security_configuration": "",
+                "timeout": 0
+              }
+            ],
+            "arn": "arn:aws:glue:us-east-1:439530517237:trigger/cloud-native-analytics-daily-etl-trigger",
+            "description": "Daily trigger for NYC taxi ETL pipeline",
+            "enabled": false,
+            "event_batching_condition": [],
+            "id": "cloud-native-analytics-daily-etl-trigger",
+            "name": "cloud-native-analytics-daily-etl-trigger",
+            "predicate": [],
+            "schedule": "cron(0 6 * * ? *)",
+            "start_on_creation": null,
+            "state": "CREATED",
+            "tags": {
+              "Environment": "dev",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "Data Engineering Portfolio"
+            },
+            "tags_all": {
+              "Environment": "dev",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "Data Engineering Portfolio"
+            },
+            "timeouts": null,
+            "type": "SCHEDULED",
+            "workflow_name": ""
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozMDAwMDAwMDAwMDAsImRlbGV0ZSI6MzAwMDAwMDAwMDAwLCJ1cGRhdGUiOjMwMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "aws_glue_catalog_database.analytics_db",
+            "aws_glue_job.nyc_taxi_etl",
+            "aws_iam_role.glue_etl_role",
+            "aws_s3_bucket.data_pipeline",
+            "data.aws_iam_policy_document.glue_trust_policy",
+            "random_id.bucket_suffix"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_glue_trigger",
+      "name": "post_curated_crawler_trigger",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "actions": [
+              {
+                "arguments": {},
+                "crawler_name": "cloud-native-analytics-curated-crawler",
+                "job_name": "",
+                "notification_property": [],
+                "security_configuration": "",
+                "timeout": 0
+              }
+            ],
+            "arn": "arn:aws:glue:us-east-1:439530517237:trigger/cloud-native-analytics-post-curated-crawler",
+            "description": "Run curated crawler after aggregation job completes",
+            "enabled": true,
+            "event_batching_condition": [],
+            "id": "cloud-native-analytics-post-curated-crawler",
+            "name": "cloud-native-analytics-post-curated-crawler",
+            "predicate": [
+              {
+                "conditions": [
+                  {
+                    "crawl_state": "",
+                    "crawler_name": "",
+                    "job_name": "cloud-native-analytics-curated-aggregations",
+                    "logical_operator": "EQUALS",
+                    "state": "SUCCEEDED"
+                  }
+                ],
+                "logical": "AND"
+              }
+            ],
+            "schedule": "",
+            "start_on_creation": null,
+            "state": "ACTIVATED",
+            "tags": {
+              "Environment": "dev",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "Data Engineering Portfolio"
+            },
+            "tags_all": {
+              "Environment": "dev",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "Data Engineering Portfolio"
+            },
+            "timeouts": null,
+            "type": "CONDITIONAL",
+            "workflow_name": ""
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozMDAwMDAwMDAwMDAsImRlbGV0ZSI6MzAwMDAwMDAwMDAwLCJ1cGRhdGUiOjMwMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "aws_glue_catalog_database.analytics_db",
+            "aws_glue_crawler.curated_crawler",
+            "aws_glue_job.curated_aggregations",
+            "aws_iam_role.glue_etl_role",
+            "aws_s3_bucket.data_pipeline",
+            "data.aws_iam_policy_document.glue_trust_policy",
+            "random_id.bucket_suffix"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_glue_trigger",
+      "name": "post_etl_crawler_trigger",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "actions": [
+              {
+                "arguments": {},
+                "crawler_name": "cloud-native-analytics-staging-crawler",
+                "job_name": "",
+                "notification_property": [],
+                "security_configuration": "",
+                "timeout": 0
+              }
+            ],
+            "arn": "arn:aws:glue:us-east-1:439530517237:trigger/cloud-native-analytics-post-etl-crawler",
+            "description": "Run staging crawler after ETL job completes",
+            "enabled": true,
+            "event_batching_condition": [],
+            "id": "cloud-native-analytics-post-etl-crawler",
+            "name": "cloud-native-analytics-post-etl-crawler",
+            "predicate": [
+              {
+                "conditions": [
+                  {
+                    "crawl_state": "",
+                    "crawler_name": "",
+                    "job_name": "cloud-native-analytics-nyc-taxi-etl",
+                    "logical_operator": "EQUALS",
+                    "state": "SUCCEEDED"
+                  }
+                ],
+                "logical": "AND"
+              }
+            ],
+            "schedule": "",
+            "start_on_creation": null,
+            "state": "ACTIVATED",
+            "tags": {
+              "Environment": "dev",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "Data Engineering Portfolio"
+            },
+            "tags_all": {
+              "Environment": "dev",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "Data Engineering Portfolio"
+            },
+            "timeouts": null,
+            "type": "CONDITIONAL",
+            "workflow_name": ""
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozMDAwMDAwMDAwMDAsImRlbGV0ZSI6MzAwMDAwMDAwMDAwLCJ1cGRhdGUiOjMwMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "aws_glue_catalog_database.analytics_db",
+            "aws_glue_crawler.staging_crawler",
+            "aws_glue_job.nyc_taxi_etl",
+            "aws_iam_role.glue_etl_role",
+            "aws_s3_bucket.data_pipeline",
+            "data.aws_iam_policy_document.glue_trust_policy",
+            "random_id.bucket_suffix"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_iam_policy",
+      "name": "glue_catalog_policy",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:iam::439530517237:policy/cloud-native-analytics-glue-catalog-policy",
+            "attachment_count": 1,
+            "description": "Glue Data Catalog access policy",
+            "id": "arn:aws:iam::439530517237:policy/cloud-native-analytics-glue-catalog-policy",
+            "name": "cloud-native-analytics-glue-catalog-policy",
+            "name_prefix": "",
+            "path": "/",
+            "policy": "{\"Statement\":[{\"Action\":[\"glue:UpdateTable\",\"glue:UpdatePartition\",\"glue:UpdateDatabase\",\"glue:GetTables\",\"glue:GetTable\",\"glue:GetPartitions\",\"glue:GetPartition\",\"glue:GetDatabases\",\"glue:GetDatabase\",\"glue:DeleteTable\",\"glue:DeletePartition\",\"glue:DeleteDatabase\",\"glue:CreateTable\",\"glue:CreatePartition\",\"glue:CreateDatabase\",\"glue:BatchUpdatePartition\",\"glue:BatchDeletePartition\",\"glue:BatchCreatePartition\"],\"Effect\":\"Allow\",\"Resource\":[\"arn:aws:glue:us-east-1:439530517237:table/cloud-native-analytics*/*\",\"arn:aws:glue:us-east-1:439530517237:database/cloud-native-analytics*\",\"arn:aws:glue:us-east-1:439530517237:catalog\"]}],\"Version\":\"2012-10-17\"}",
+            "policy_id": "ANPAWMVQPOL2R7N5ZUOJR",
+            "tags": {
+              "Environment": "dev",
+              "Name": "cloud-native-analytics-glue-catalog-policy",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "Data Catalog access for Glue"
+            },
+            "tags_all": {
+              "Environment": "dev",
+              "Name": "cloud-native-analytics-glue-catalog-policy",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "Data Catalog access for Glue"
+            }
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "bnVsbA==",
+          "dependencies": [
+            "data.aws_caller_identity.current",
+            "data.aws_iam_policy_document.glue_catalog_policy",
+            "data.aws_region.current"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_iam_policy",
+      "name": "glue_logs_policy",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:iam::439530517237:policy/cloud-native-analytics-glue-logs-policy",
+            "attachment_count": 1,
+            "description": "CloudWatch Logs access policy for Glue ETL jobs",
+            "id": "arn:aws:iam::439530517237:policy/cloud-native-analytics-glue-logs-policy",
+            "name": "cloud-native-analytics-glue-logs-policy",
+            "name_prefix": "",
+            "path": "/",
+            "policy": "{\"Statement\":[{\"Action\":[\"logs:PutLogEvents\",\"logs:DescribeLogStreams\",\"logs:DescribeLogGroups\",\"logs:CreateLogStream\",\"logs:CreateLogGroup\"],\"Effect\":\"Allow\",\"Resource\":\"arn:aws:logs:us-east-1:439530517237:log-group:/aws-glue/*\"}],\"Version\":\"2012-10-17\"}",
+            "policy_id": "ANPAWMVQPOL2UXSMMBEXH",
+            "tags": {
+              "Environment": "dev",
+              "Name": "cloud-native-analytics-glue-logs-policy",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "CloudWatch Logs access for Glue"
+            },
+            "tags_all": {
+              "Environment": "dev",
+              "Name": "cloud-native-analytics-glue-logs-policy",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "CloudWatch Logs access for Glue"
+            }
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "bnVsbA==",
+          "dependencies": [
+            "data.aws_caller_identity.current",
+            "data.aws_iam_policy_document.glue_logs_policy",
+            "data.aws_region.current"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_iam_policy",
+      "name": "glue_s3_policy",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:iam::439530517237:policy/cloud-native-analytics-glue-s3-policy",
+            "attachment_count": 1,
+            "description": "S3 access policy for Glue ETL jobs",
+            "id": "arn:aws:iam::439530517237:policy/cloud-native-analytics-glue-s3-policy",
+            "name": "cloud-native-analytics-glue-s3-policy",
+            "name_prefix": "",
+            "path": "/",
+            "policy": "{\"Statement\":[{\"Action\":[\"s3:PutObject\",\"s3:ListBucket\",\"s3:GetObject\",\"s3:GetBucketLocation\",\"s3:DeleteObject\"],\"Effect\":\"Allow\",\"Resource\":[\"arn:aws:s3:::cloud-native-analytics-pipeline-d8e6ca17/*\",\"arn:aws:s3:::cloud-native-analytics-pipeline-d8e6ca17\"]},{\"Action\":\"s3:ListAllMyBuckets\",\"Effect\":\"Allow\",\"Resource\":\"*\"}],\"Version\":\"2012-10-17\"}",
+            "policy_id": "ANPAWMVQPOL2VA4HDTEOR",
+            "tags": {
+              "Environment": "dev",
+              "Name": "cloud-native-analytics-glue-s3-policy",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "S3 access for Glue"
+            },
+            "tags_all": {
+              "Environment": "dev",
+              "Name": "cloud-native-analytics-glue-s3-policy",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "S3 access for Glue"
+            }
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "bnVsbA==",
+          "dependencies": [
+            "aws_s3_bucket.data_pipeline",
+            "data.aws_iam_policy_document.glue_s3_policy",
+            "random_id.bucket_suffix"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_iam_policy",
+      "name": "redshift_glue_policy",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:iam::439530517237:policy/cloud-native-analytics-redshift-glue-policy",
+            "attachment_count": 0,
+            "description": "Glue Data Catalog access for Redshift Spectrum",
+            "id": "arn:aws:iam::439530517237:policy/cloud-native-analytics-redshift-glue-policy",
+            "name": "cloud-native-analytics-redshift-glue-policy",
+            "name_prefix": "",
+            "path": "/",
+            "policy": "{\"Statement\":[{\"Action\":[\"glue:GetTables\",\"glue:GetTable\",\"glue:GetPartitions\",\"glue:GetPartition\",\"glue:GetDatabases\",\"glue:GetDatabase\"],\"Effect\":\"Allow\",\"Resource\":[\"arn:aws:glue:us-east-1:439530517237:table/cloud-native-analytics-analytics-db/*\",\"arn:aws:glue:us-east-1:439530517237:database/cloud-native-analytics-analytics-db\",\"arn:aws:glue:us-east-1:439530517237:catalog\"]}],\"Version\":\"2012-10-17\"}",
+            "policy_id": "ANPAWMVQPOL2T5VX3HLKK",
+            "tags": {
+              "Environment": "dev",
+              "Name": "cloud-native-analytics-redshift-glue-policy",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "Glue Data Catalog access for Redshift"
+            },
+            "tags_all": {
+              "Environment": "dev",
+              "Name": "cloud-native-analytics-redshift-glue-policy",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "Glue Data Catalog access for Redshift"
+            }
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "bnVsbA==",
+          "dependencies": [
+            "aws_glue_catalog_database.analytics_db",
+            "data.aws_caller_identity.current",
+            "data.aws_iam_policy_document.redshift_glue_policy",
+            "data.aws_region.current"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_iam_policy",
+      "name": "redshift_logs_policy",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:iam::439530517237:policy/cloud-native-analytics-redshift-logs-policy",
+            "attachment_count": 1,
+            "description": "CloudWatch Logs policy for Redshift cluster",
+            "id": "arn:aws:iam::439530517237:policy/cloud-native-analytics-redshift-logs-policy",
+            "name": "cloud-native-analytics-redshift-logs-policy",
+            "name_prefix": "",
+            "path": "/",
+            "policy": "{\"Statement\":[{\"Action\":[\"logs:PutLogEvents\",\"logs:DescribeLogStreams\",\"logs:DescribeLogGroups\",\"logs:CreateLogStream\",\"logs:CreateLogGroup\"],\"Effect\":\"Allow\",\"Resource\":\"arn:aws:logs:us-east-1:439530517237:log-group:/aws/redshift/*\"}],\"Version\":\"2012-10-17\"}",
+            "policy_id": "ANPAWMVQPOL2UA7CTE5VN",
+            "tags": {
+              "Environment": "dev",
+              "Name": "cloud-native-analytics-redshift-logs-policy",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "CloudWatch Logs for Redshift"
+            },
+            "tags_all": {
+              "Environment": "dev",
+              "Name": "cloud-native-analytics-redshift-logs-policy",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "CloudWatch Logs for Redshift"
+            }
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "bnVsbA==",
+          "dependencies": [
+            "data.aws_caller_identity.current",
+            "data.aws_iam_policy_document.redshift_logs_policy",
+            "data.aws_region.current"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_iam_policy",
+      "name": "redshift_s3_policy",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:iam::439530517237:policy/cloud-native-analytics-redshift-s3-policy",
+            "attachment_count": 1,
+            "description": "S3 access policy for Redshift cluster",
+            "id": "arn:aws:iam::439530517237:policy/cloud-native-analytics-redshift-s3-policy",
+            "name": "cloud-native-analytics-redshift-s3-policy",
+            "name_prefix": "",
+            "path": "/",
+            "policy": "{\"Statement\":[{\"Action\":[\"s3:ListBucket\",\"s3:GetObject\",\"s3:GetBucketLocation\"],\"Effect\":\"Allow\",\"Resource\":[\"arn:aws:s3:::cloud-native-analytics-pipeline-d8e6ca17/*\",\"arn:aws:s3:::cloud-native-analytics-pipeline-d8e6ca17\"]},{\"Action\":\"s3:GetObject\",\"Effect\":\"Allow\",\"Resource\":\"arn:aws:s3:::cloud-native-analytics-pipeline-d8e6ca17/curated/*\"},{\"Action\":\"s3:ListAllMyBuckets\",\"Effect\":\"Allow\",\"Resource\":\"*\"}],\"Version\":\"2012-10-17\"}",
+            "policy_id": "ANPAWMVQPOL22NQM2UW6F",
+            "tags": {
+              "Environment": "dev",
+              "Name": "cloud-native-analytics-redshift-s3-policy",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "S3 access for Redshift"
+            },
+            "tags_all": {
+              "Environment": "dev",
+              "Name": "cloud-native-analytics-redshift-s3-policy",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "S3 access for Redshift"
+            }
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "bnVsbA==",
+          "dependencies": [
+            "aws_s3_bucket.data_pipeline",
+            "data.aws_iam_policy_document.redshift_s3_policy",
+            "random_id.bucket_suffix"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_iam_role",
+      "name": "glue_etl_role",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:iam::439530517237:role/cloud-native-analytics-glue-etl-role",
+            "assume_role_policy": "{\"Statement\":[{\"Action\":\"sts:AssumeRole\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"glue.amazonaws.com\"}}],\"Version\":\"2012-10-17\"}",
+            "create_date": "2025-06-08T17:29:14Z",
+            "description": "",
+            "force_detach_policies": false,
+            "id": "cloud-native-analytics-glue-etl-role",
+            "inline_policy": [],
+            "managed_policy_arns": [
+              "arn:aws:iam::439530517237:policy/cloud-native-analytics-glue-catalog-policy",
+              "arn:aws:iam::439530517237:policy/cloud-native-analytics-glue-logs-policy",
+              "arn:aws:iam::439530517237:policy/cloud-native-analytics-glue-s3-policy",
+              "arn:aws:iam::aws:policy/service-role/AWSGlueServiceRole"
+            ],
+            "max_session_duration": 3600,
+            "name": "cloud-native-analytics-glue-etl-role",
+            "name_prefix": "",
+            "path": "/",
+            "permissions_boundary": "",
+            "tags": {
+              "Environment": "dev",
+              "Name": "cloud-native-analytics-glue-etl-role",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "Glue ETL job execution"
+            },
+            "tags_all": {
+              "Environment": "dev",
+              "Name": "cloud-native-analytics-glue-etl-role",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "Glue ETL job execution"
+            },
+            "unique_id": "AROAWMVQPOL22W47V2KOF"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "bnVsbA==",
+          "dependencies": [
+            "data.aws_iam_policy_document.glue_trust_policy"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_iam_role",
+      "name": "redshift_role",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:iam::439530517237:role/cloud-native-analytics-redshift-role",
+            "assume_role_policy": "{\"Statement\":[{\"Action\":\"sts:AssumeRole\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"redshift.amazonaws.com\"}}],\"Version\":\"2012-10-17\"}",
+            "create_date": "2025-06-08T17:29:14Z",
+            "description": "",
+            "force_detach_policies": false,
+            "id": "cloud-native-analytics-redshift-role",
+            "inline_policy": [],
+            "managed_policy_arns": [
+              "arn:aws:iam::439530517237:policy/cloud-native-analytics-redshift-glue-policy",
+              "arn:aws:iam::439530517237:policy/cloud-native-analytics-redshift-logs-policy",
+              "arn:aws:iam::439530517237:policy/cloud-native-analytics-redshift-s3-policy"
+            ],
+            "max_session_duration": 3600,
+            "name": "cloud-native-analytics-redshift-role",
+            "name_prefix": "",
+            "path": "/",
+            "permissions_boundary": "",
+            "tags": {
+              "Environment": "dev",
+              "Name": "cloud-native-analytics-redshift-role",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "Redshift cluster data access"
+            },
+            "tags_all": {
+              "Environment": "dev",
+              "Name": "cloud-native-analytics-redshift-role",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "Redshift cluster data access"
+            },
+            "unique_id": "AROAWMVQPOL2VDCEFTX3X"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "bnVsbA==",
+          "dependencies": [
+            "data.aws_iam_policy_document.redshift_trust_policy"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_iam_role_policy_attachment",
+      "name": "glue_catalog_attachment",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "cloud-native-analytics-glue-etl-role-20250608172915138000000004",
+            "policy_arn": "arn:aws:iam::439530517237:policy/cloud-native-analytics-glue-catalog-policy",
+            "role": "cloud-native-analytics-glue-etl-role"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "bnVsbA==",
+          "dependencies": [
+            "aws_iam_policy.glue_catalog_policy",
+            "aws_iam_role.glue_etl_role",
+            "data.aws_caller_identity.current",
+            "data.aws_iam_policy_document.glue_catalog_policy",
+            "data.aws_iam_policy_document.glue_trust_policy",
+            "data.aws_region.current"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_iam_role_policy_attachment",
+      "name": "glue_logs_attachment",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "cloud-native-analytics-glue-etl-role-20250608172915101000000001",
+            "policy_arn": "arn:aws:iam::439530517237:policy/cloud-native-analytics-glue-logs-policy",
+            "role": "cloud-native-analytics-glue-etl-role"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "bnVsbA==",
+          "dependencies": [
+            "aws_iam_policy.glue_logs_policy",
+            "aws_iam_role.glue_etl_role",
+            "data.aws_caller_identity.current",
+            "data.aws_iam_policy_document.glue_logs_policy",
+            "data.aws_iam_policy_document.glue_trust_policy",
+            "data.aws_region.current"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_iam_role_policy_attachment",
+      "name": "glue_s3_attachment",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "cloud-native-analytics-glue-etl-role-20250608172954815200000001",
+            "policy_arn": "arn:aws:iam::439530517237:policy/cloud-native-analytics-glue-s3-policy",
+            "role": "cloud-native-analytics-glue-etl-role"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "bnVsbA==",
+          "dependencies": [
+            "aws_iam_policy.glue_s3_policy",
+            "aws_iam_role.glue_etl_role",
+            "aws_s3_bucket.data_pipeline",
+            "data.aws_iam_policy_document.glue_s3_policy",
+            "data.aws_iam_policy_document.glue_trust_policy",
+            "random_id.bucket_suffix"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_iam_role_policy_attachment",
+      "name": "glue_service_role",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "cloud-native-analytics-glue-etl-role-20250608172915130700000003",
+            "policy_arn": "arn:aws:iam::aws:policy/service-role/AWSGlueServiceRole",
+            "role": "cloud-native-analytics-glue-etl-role"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "bnVsbA==",
+          "dependencies": [
+            "aws_iam_role.glue_etl_role",
+            "data.aws_iam_policy_document.glue_trust_policy"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_iam_role_policy_attachment",
+      "name": "redshift_glue_attachment",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "cloud-native-analytics-redshift-role-20250608202418417500000001",
+            "policy_arn": "arn:aws:iam::439530517237:policy/cloud-native-analytics-redshift-glue-policy",
+            "role": "cloud-native-analytics-redshift-role"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "bnVsbA==",
+          "dependencies": [
+            "aws_glue_catalog_database.analytics_db",
+            "aws_iam_policy.redshift_glue_policy",
+            "aws_iam_role.redshift_role",
+            "data.aws_caller_identity.current",
+            "data.aws_iam_policy_document.redshift_glue_policy",
+            "data.aws_iam_policy_document.redshift_trust_policy",
+            "data.aws_region.current"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_iam_role_policy_attachment",
+      "name": "redshift_logs_attachment",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "cloud-native-analytics-redshift-role-20250608172915110400000002",
+            "policy_arn": "arn:aws:iam::439530517237:policy/cloud-native-analytics-redshift-logs-policy",
+            "role": "cloud-native-analytics-redshift-role"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "bnVsbA==",
+          "dependencies": [
+            "aws_iam_policy.redshift_logs_policy",
+            "aws_iam_role.redshift_role",
+            "data.aws_caller_identity.current",
+            "data.aws_iam_policy_document.redshift_logs_policy",
+            "data.aws_iam_policy_document.redshift_trust_policy",
+            "data.aws_region.current"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_iam_role_policy_attachment",
+      "name": "redshift_s3_attachment",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "cloud-native-analytics-redshift-role-20250608172954959100000002",
+            "policy_arn": "arn:aws:iam::439530517237:policy/cloud-native-analytics-redshift-s3-policy",
+            "role": "cloud-native-analytics-redshift-role"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "bnVsbA==",
+          "dependencies": [
+            "aws_iam_policy.redshift_s3_policy",
+            "aws_iam_role.redshift_role",
+            "aws_s3_bucket.data_pipeline",
+            "data.aws_iam_policy_document.redshift_s3_policy",
+            "data.aws_iam_policy_document.redshift_trust_policy",
+            "random_id.bucket_suffix"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_redshift_subnet_group",
+      "name": "redshift_subnet_group",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:redshift:us-east-1:439530517237:subnetgroup:cloud-native-analytics-redshift-subnet-group",
+            "description": "Managed by Terraform",
+            "id": "cloud-native-analytics-redshift-subnet-group",
+            "name": "cloud-native-analytics-redshift-subnet-group",
+            "subnet_ids": [
+              "subnet-0139ac30f912ef245",
+              "subnet-0497912c11166021b",
+              "subnet-07e2ae6027e823edd",
+              "subnet-08b4cc7550d62a208",
+              "subnet-0b06d948d98b48f7d",
+              "subnet-0dab829cad03e2b28"
+            ],
+            "tags": {
+              "Environment": "dev",
+              "Name": "cloud-native-analytics-redshift-subnet-group",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "Data Engineering Portfolio"
+            },
+            "tags_all": {
+              "Environment": "dev",
+              "Name": "cloud-native-analytics-redshift-subnet-group",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "Data Engineering Portfolio"
+            }
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "bnVsbA==",
+          "dependencies": [
+            "data.aws_subnets.default",
+            "data.aws_vpc.default"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_redshiftserverless_namespace",
+      "name": "analytics_namespace",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "admin_password_secret_arn": "",
+            "admin_password_secret_kms_key_id": "",
+            "admin_user_password": "TempPassword123!",
+            "admin_user_password_wo": null,
+            "admin_user_password_wo_version": null,
+            "admin_username": "admin",
+            "arn": "arn:aws:redshift-serverless:us-east-1:439530517237:namespace/7201bf75-6217-423c-8909-b135d5a5c51d",
+            "db_name": "analytics_db",
+            "default_iam_role_arn": "",
+            "iam_roles": [
+              "arn:aws:iam::439530517237:role/cloud-native-analytics-redshift-role"
+            ],
+            "id": "cloud-native-analytics-namespace",
+            "kms_key_id": "AWS_OWNED_KMS_KEY",
+            "log_exports": [],
+            "manage_admin_password": null,
+            "namespace_id": "7201bf75-6217-423c-8909-b135d5a5c51d",
+            "namespace_name": "cloud-native-analytics-namespace",
+            "tags": {
+              "Environment": "dev",
+              "Name": "cloud-native-analytics-namespace",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "Data Engineering Portfolio"
+            },
+            "tags_all": {
+              "Environment": "dev",
+              "Name": "cloud-native-analytics-namespace",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "Data Engineering Portfolio"
+            }
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "admin_user_password"
+              }
+            ],
+            [
+              {
+                "type": "get_attr",
+                "value": "admin_username"
+              }
+            ]
+          ],
+          "identity_schema_version": 0,
+          "private": "bnVsbA==",
+          "dependencies": [
+            "aws_iam_role.redshift_role",
+            "data.aws_iam_policy_document.redshift_trust_policy"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_redshiftserverless_workgroup",
+      "name": "analytics_workgroup",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:redshift-serverless:us-east-1:439530517237:workgroup/94121fe2-e910-4b2e-b28d-488a21292f66",
+            "base_capacity": 32,
+            "config_parameter": [
+              {
+                "parameter_key": "auto_mv",
+                "parameter_value": "true"
+              },
+              {
+                "parameter_key": "datestyle",
+                "parameter_value": "ISO, MDY"
+              },
+              {
+                "parameter_key": "enable_case_sensitive_identifier",
+                "parameter_value": "false"
+              },
+              {
+                "parameter_key": "enable_user_activity_logging",
+                "parameter_value": "true"
+              },
+              {
+                "parameter_key": "max_query_execution_time",
+                "parameter_value": "14400"
+              },
+              {
+                "parameter_key": "query_group",
+                "parameter_value": "default"
+              },
+              {
+                "parameter_key": "require_ssl",
+                "parameter_value": "true"
+              },
+              {
+                "parameter_key": "search_path",
+                "parameter_value": "$user, public"
+              },
+              {
+                "parameter_key": "use_fips_ssl",
+                "parameter_value": "false"
+              }
+            ],
+            "endpoint": [
+              {
+                "address": "cloud-native-analytics-workgroup.439530517237.us-east-1.redshift-serverless.amazonaws.com",
+                "port": 5439,
+                "vpc_endpoint": [
+                  {
+                    "network_interface": [
+                      {
+                        "availability_zone": "us-east-1b",
+                        "network_interface_id": "eni-00b49fa03ffca3d64",
+                        "private_ip_address": "172.31.87.8",
+                        "subnet_id": "subnet-0b06d948d98b48f7d"
+                      },
+                      {
+                        "availability_zone": "us-east-1d",
+                        "network_interface_id": "eni-08089f1f771006482",
+                        "private_ip_address": "172.31.43.228",
+                        "subnet_id": "subnet-07e2ae6027e823edd"
+                      },
+                      {
+                        "availability_zone": "us-east-1a",
+                        "network_interface_id": "eni-0c94ca09012622a70",
+                        "private_ip_address": "172.31.10.216",
+                        "subnet_id": "subnet-0dab829cad03e2b28"
+                      }
+                    ],
+                    "vpc_endpoint_id": "vpce-0dd5e4d79f6ee4c50",
+                    "vpc_id": "vpc-0986ed387be5230fb"
+                  }
+                ]
+              }
+            ],
+            "enhanced_vpc_routing": false,
+            "id": "cloud-native-analytics-workgroup",
+            "max_capacity": 0,
+            "namespace_name": "cloud-native-analytics-namespace",
+            "port": 5439,
+            "price_performance_target": [
+              {
+                "enabled": false,
+                "level": 0
+              }
+            ],
+            "publicly_accessible": true,
+            "security_group_ids": [
+              "sg-013cc9c91e4f821a0"
+            ],
+            "subnet_ids": [
+              "subnet-0139ac30f912ef245",
+              "subnet-0497912c11166021b",
+              "subnet-07e2ae6027e823edd",
+              "subnet-08b4cc7550d62a208",
+              "subnet-0b06d948d98b48f7d",
+              "subnet-0dab829cad03e2b28"
+            ],
+            "tags": {
+              "Environment": "dev",
+              "Name": "cloud-native-analytics-workgroup",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "Data Engineering Portfolio"
+            },
+            "tags_all": {
+              "Environment": "dev",
+              "Name": "cloud-native-analytics-workgroup",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "Data Engineering Portfolio"
+            },
+            "timeouts": null,
+            "track_name": "current",
+            "workgroup_id": "94121fe2-e910-4b2e-b28d-488a21292f66",
+            "workgroup_name": "cloud-native-analytics-workgroup"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "aws_iam_role.redshift_role",
+            "aws_redshiftserverless_namespace.analytics_namespace",
+            "aws_security_group.redshift_sg",
+            "data.aws_iam_policy_document.redshift_trust_policy",
+            "data.aws_subnets.default",
+            "data.aws_vpc.default"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_s3_bucket",
+      "name": "data_pipeline",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "acceleration_status": "",
+            "acl": null,
+            "arn": "arn:aws:s3:::cloud-native-analytics-pipeline-d8e6ca17",
+            "bucket": "cloud-native-analytics-pipeline-d8e6ca17",
+            "bucket_domain_name": "cloud-native-analytics-pipeline-d8e6ca17.s3.amazonaws.com",
+            "bucket_prefix": "",
+            "bucket_regional_domain_name": "cloud-native-analytics-pipeline-d8e6ca17.s3.us-east-1.amazonaws.com",
+            "cors_rule": [],
+            "force_destroy": false,
+            "grant": [
+              {
+                "id": "e73a8f75ab7ac7b4a7ada30f0507ea24437e6a612a20221f84dda3462def7c97",
+                "permissions": [
+                  "FULL_CONTROL"
+                ],
+                "type": "CanonicalUser",
+                "uri": ""
+              }
+            ],
+            "hosted_zone_id": "Z3AQBSTGFYJSTF",
+            "id": "cloud-native-analytics-pipeline-d8e6ca17",
+            "lifecycle_rule": [
+              {
+                "abort_incomplete_multipart_upload_days": 0,
+                "enabled": true,
+                "expiration": [
+                  {
+                    "date": "",
+                    "days": 365,
+                    "expired_object_delete_marker": false
+                  }
+                ],
+                "id": "data_pipeline_lifecycle",
+                "noncurrent_version_expiration": [
+                  {
+                    "days": 30
+                  }
+                ],
+                "noncurrent_version_transition": [],
+                "prefix": "raw/",
+                "tags": {},
+                "transition": [
+                  {
+                    "date": "",
+                    "days": 30,
+                    "storage_class": "STANDARD_IA"
+                  },
+                  {
+                    "date": "",
+                    "days": 90,
+                    "storage_class": "GLACIER"
+                  }
+                ]
+              },
+              {
+                "abort_incomplete_multipart_upload_days": 0,
+                "enabled": true,
+                "expiration": [
+                  {
+                    "date": "",
+                    "days": 90,
+                    "expired_object_delete_marker": false
+                  }
+                ],
+                "id": "staging_data_lifecycle",
+                "noncurrent_version_expiration": [],
+                "noncurrent_version_transition": [],
+                "prefix": "staging/",
+                "tags": {},
+                "transition": [
+                  {
+                    "date": "",
+                    "days": 30,
+                    "storage_class": "STANDARD_IA"
+                  },
+                  {
+                    "date": "",
+                    "days": 60,
+                    "storage_class": "GLACIER"
+                  }
+                ]
+              },
+              {
+                "abort_incomplete_multipart_upload_days": 0,
+                "enabled": true,
+                "expiration": [
+                  {
+                    "date": "",
+                    "days": 180,
+                    "expired_object_delete_marker": false
+                  }
+                ],
+                "id": "curated_data_lifecycle",
+                "noncurrent_version_expiration": [],
+                "noncurrent_version_transition": [],
+                "prefix": "curated/",
+                "tags": {},
+                "transition": [
+                  {
+                    "date": "",
+                    "days": 30,
+                    "storage_class": "STANDARD_IA"
+                  },
+                  {
+                    "date": "",
+                    "days": 90,
+                    "storage_class": "GLACIER"
+                  }
+                ]
+              }
+            ],
+            "logging": [],
+            "object_lock_configuration": [],
+            "object_lock_enabled": false,
+            "policy": "",
+            "region": "us-east-1",
+            "replication_configuration": [],
+            "request_payer": "BucketOwner",
+            "server_side_encryption_configuration": [
+              {
+                "rule": [
+                  {
+                    "apply_server_side_encryption_by_default": [
+                      {
+                        "kms_master_key_id": "",
+                        "sse_algorithm": "AES256"
+                      }
+                    ],
+                    "bucket_key_enabled": true
+                  }
+                ]
+              }
+            ],
+            "tags": {
+              "DataLayers": "raw-staging-curated",
+              "Environment": "dev",
+              "Name": "cloud-native-analytics-data-bucket",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "Data-Pipeline-Storage"
+            },
+            "tags_all": {
+              "DataLayers": "raw-staging-curated",
+              "Environment": "dev",
+              "Name": "cloud-native-analytics-data-bucket",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "Data-Pipeline-Storage"
+            },
+            "timeouts": null,
+            "versioning": [
+              {
+                "enabled": true,
+                "mfa_delete": false
+              }
+            ],
+            "website": [],
+            "website_domain": null,
+            "website_endpoint": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjM2MDAwMDAwMDAwMDAsInJlYWQiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "random_id.bucket_suffix"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_s3_bucket_lifecycle_configuration",
+      "name": "data_pipeline",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "index_key": 0,
+          "schema_version": 1,
+          "attributes": {
+            "bucket": "cloud-native-analytics-pipeline-d8e6ca17",
+            "expected_bucket_owner": "",
+            "id": "cloud-native-analytics-pipeline-d8e6ca17",
+            "rule": [
+              {
+                "abort_incomplete_multipart_upload": [],
+                "expiration": [
+                  {
+                    "date": null,
+                    "days": 365,
+                    "expired_object_delete_marker": false
+                  }
+                ],
+                "filter": [
+                  {
+                    "and": [],
+                    "object_size_greater_than": null,
+                    "object_size_less_than": null,
+                    "prefix": "raw/",
+                    "tag": []
+                  }
+                ],
+                "id": "data_pipeline_lifecycle",
+                "noncurrent_version_expiration": [
+                  {
+                    "newer_noncurrent_versions": null,
+                    "noncurrent_days": 30
+                  }
+                ],
+                "noncurrent_version_transition": [],
+                "prefix": "",
+                "status": "Enabled",
+                "transition": [
+                  {
+                    "date": null,
+                    "days": 30,
+                    "storage_class": "STANDARD_IA"
+                  },
+                  {
+                    "date": null,
+                    "days": 90,
+                    "storage_class": "GLACIER"
+                  }
+                ]
+              },
+              {
+                "abort_incomplete_multipart_upload": [],
+                "expiration": [
+                  {
+                    "date": null,
+                    "days": 90,
+                    "expired_object_delete_marker": false
+                  }
+                ],
+                "filter": [
+                  {
+                    "and": [],
+                    "object_size_greater_than": null,
+                    "object_size_less_than": null,
+                    "prefix": "staging/",
+                    "tag": []
+                  }
+                ],
+                "id": "staging_data_lifecycle",
+                "noncurrent_version_expiration": [],
+                "noncurrent_version_transition": [],
+                "prefix": "",
+                "status": "Enabled",
+                "transition": [
+                  {
+                    "date": null,
+                    "days": 30,
+                    "storage_class": "STANDARD_IA"
+                  },
+                  {
+                    "date": null,
+                    "days": 60,
+                    "storage_class": "GLACIER"
+                  }
+                ]
+              },
+              {
+                "abort_incomplete_multipart_upload": [],
+                "expiration": [
+                  {
+                    "date": null,
+                    "days": 180,
+                    "expired_object_delete_marker": false
+                  }
+                ],
+                "filter": [
+                  {
+                    "and": [],
+                    "object_size_greater_than": null,
+                    "object_size_less_than": null,
+                    "prefix": "curated/",
+                    "tag": []
+                  }
+                ],
+                "id": "curated_data_lifecycle",
+                "noncurrent_version_expiration": [],
+                "noncurrent_version_transition": [],
+                "prefix": "",
+                "status": "Enabled",
+                "transition": [
+                  {
+                    "date": null,
+                    "days": 30,
+                    "storage_class": "STANDARD_IA"
+                  },
+                  {
+                    "date": null,
+                    "days": 90,
+                    "storage_class": "GLACIER"
+                  }
+                ]
+              }
+            ],
+            "timeouts": null,
+            "transition_default_minimum_object_size": "all_storage_classes_128K"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "dependencies": [
+            "aws_s3_bucket.data_pipeline",
+            "random_id.bucket_suffix"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_s3_bucket_public_access_block",
+      "name": "data_pipeline",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "block_public_acls": true,
+            "block_public_policy": true,
+            "bucket": "cloud-native-analytics-pipeline-d8e6ca17",
+            "id": "cloud-native-analytics-pipeline-d8e6ca17",
+            "ignore_public_acls": true,
+            "restrict_public_buckets": true
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "bnVsbA==",
+          "dependencies": [
+            "aws_s3_bucket.data_pipeline",
+            "random_id.bucket_suffix"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_s3_bucket_server_side_encryption_configuration",
+      "name": "data_pipeline",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "bucket": "cloud-native-analytics-pipeline-d8e6ca17",
+            "expected_bucket_owner": "",
+            "id": "cloud-native-analytics-pipeline-d8e6ca17",
+            "rule": [
+              {
+                "apply_server_side_encryption_by_default": [
+                  {
+                    "kms_master_key_id": "",
+                    "sse_algorithm": "AES256"
+                  }
+                ],
+                "bucket_key_enabled": true
+              }
+            ]
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "bnVsbA==",
+          "dependencies": [
+            "aws_s3_bucket.data_pipeline",
+            "random_id.bucket_suffix"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_s3_bucket_versioning",
+      "name": "data_pipeline",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "bucket": "cloud-native-analytics-pipeline-d8e6ca17",
+            "expected_bucket_owner": "",
+            "id": "cloud-native-analytics-pipeline-d8e6ca17",
+            "mfa": null,
+            "versioning_configuration": [
+              {
+                "mfa_delete": "",
+                "status": "Enabled"
+              }
+            ]
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "bnVsbA==",
+          "dependencies": [
+            "aws_s3_bucket.data_pipeline",
+            "random_id.bucket_suffix"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_s3_object",
+      "name": "curated_aggregations_script",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "acl": null,
+            "arn": "arn:aws:s3:::cloud-native-analytics-pipeline-d8e6ca17/scripts/create_curated_aggregations.py",
+            "bucket": "cloud-native-analytics-pipeline-d8e6ca17",
+            "bucket_key_enabled": false,
+            "cache_control": "",
+            "checksum_algorithm": null,
+            "checksum_crc32": "",
+            "checksum_crc32c": "",
+            "checksum_crc64nvme": "",
+            "checksum_sha1": "",
+            "checksum_sha256": "",
+            "content": null,
+            "content_base64": null,
+            "content_disposition": "",
+            "content_encoding": "",
+            "content_language": "",
+            "content_type": "application/octet-stream",
+            "etag": "b69b13cc84f325007d95ba3109434bf4",
+            "force_destroy": false,
+            "id": "scripts/create_curated_aggregations.py",
+            "key": "scripts/create_curated_aggregations.py",
+            "kms_key_id": null,
+            "metadata": {},
+            "object_lock_legal_hold_status": "",
+            "object_lock_mode": "",
+            "object_lock_retain_until_date": "",
+            "override_provider": [],
+            "server_side_encryption": "AES256",
+            "source": "../scripts/create_curated_aggregations.py",
+            "source_hash": null,
+            "storage_class": "STANDARD",
+            "tags": {
+              "Environment": "dev",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "Curated layer aggregations script with partition conflict resolution"
+            },
+            "tags_all": {
+              "Environment": "dev",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "Curated layer aggregations script with partition conflict resolution"
+            },
+            "version_id": "myIRw5IdlILzkmmiezS3sxthlMjGsiQK",
+            "website_redirect": ""
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "bnVsbA==",
+          "dependencies": [
+            "aws_s3_bucket.data_pipeline",
+            "random_id.bucket_suffix"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_s3_object",
+      "name": "curated_folder",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "acl": null,
+            "arn": "arn:aws:s3:::cloud-native-analytics-pipeline-d8e6ca17/curated/",
+            "bucket": "cloud-native-analytics-pipeline-d8e6ca17",
+            "bucket_key_enabled": false,
+            "cache_control": "",
+            "checksum_algorithm": null,
+            "checksum_crc32": "",
+            "checksum_crc32c": "",
+            "checksum_crc64nvme": "",
+            "checksum_sha1": "",
+            "checksum_sha256": "",
+            "content": null,
+            "content_base64": null,
+            "content_disposition": "",
+            "content_encoding": "",
+            "content_language": "",
+            "content_type": "application/x-directory",
+            "etag": "d41d8cd98f00b204e9800998ecf8427e",
+            "force_destroy": false,
+            "id": "curated/",
+            "key": "curated/",
+            "kms_key_id": null,
+            "metadata": {},
+            "object_lock_legal_hold_status": "",
+            "object_lock_mode": "",
+            "object_lock_retain_until_date": "",
+            "override_provider": [],
+            "server_side_encryption": "AES256",
+            "source": null,
+            "source_hash": null,
+            "storage_class": "STANDARD",
+            "tags": {
+              "Environment": "dev",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "Curated data storage"
+            },
+            "tags_all": {
+              "Environment": "dev",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "Curated data storage"
+            },
+            "version_id": "D5nBXAlegRYguQ0iHl_vskZYns1wl.Vz",
+            "website_redirect": ""
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "bnVsbA==",
+          "dependencies": [
+            "aws_s3_bucket.data_pipeline",
+            "random_id.bucket_suffix"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_s3_object",
+      "name": "logs_folder",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "acl": null,
+            "arn": "arn:aws:s3:::cloud-native-analytics-pipeline-d8e6ca17/logs/",
+            "bucket": "cloud-native-analytics-pipeline-d8e6ca17",
+            "bucket_key_enabled": false,
+            "cache_control": "",
+            "checksum_algorithm": null,
+            "checksum_crc32": "",
+            "checksum_crc32c": "",
+            "checksum_crc64nvme": "",
+            "checksum_sha1": "",
+            "checksum_sha256": "",
+            "content": null,
+            "content_base64": null,
+            "content_disposition": "",
+            "content_encoding": "",
+            "content_language": "",
+            "content_type": "application/x-directory",
+            "etag": "d41d8cd98f00b204e9800998ecf8427e",
+            "force_destroy": false,
+            "id": "logs/",
+            "key": "logs/",
+            "kms_key_id": null,
+            "metadata": {},
+            "object_lock_legal_hold_status": "",
+            "object_lock_mode": "",
+            "object_lock_retain_until_date": "",
+            "override_provider": [],
+            "server_side_encryption": "AES256",
+            "source": null,
+            "source_hash": null,
+            "storage_class": "STANDARD",
+            "tags": {
+              "Environment": "dev",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "ETL job logs"
+            },
+            "tags_all": {
+              "Environment": "dev",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "ETL job logs"
+            },
+            "version_id": "KeFVO1y1pKEfayL7HGUycGn4sdpjdnSf",
+            "website_redirect": ""
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "bnVsbA==",
+          "dependencies": [
+            "aws_s3_bucket.data_pipeline",
+            "random_id.bucket_suffix"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_s3_object",
+      "name": "nyc_taxi_etl_script",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "acl": null,
+            "arn": "arn:aws:s3:::cloud-native-analytics-pipeline-d8e6ca17/scripts/transform_nyc_taxi_glue.py",
+            "bucket": "cloud-native-analytics-pipeline-d8e6ca17",
+            "bucket_key_enabled": false,
+            "cache_control": "",
+            "checksum_algorithm": null,
+            "checksum_crc32": "",
+            "checksum_crc32c": "",
+            "checksum_crc64nvme": "",
+            "checksum_sha1": "",
+            "checksum_sha256": "",
+            "content": null,
+            "content_base64": null,
+            "content_disposition": "",
+            "content_encoding": "",
+            "content_language": "",
+            "content_type": "application/octet-stream",
+            "etag": "c5164758a827501c191e8c2b0fe9ad60",
+            "force_destroy": false,
+            "id": "scripts/transform_nyc_taxi_glue.py",
+            "key": "scripts/transform_nyc_taxi_glue.py",
+            "kms_key_id": null,
+            "metadata": {},
+            "object_lock_legal_hold_status": "",
+            "object_lock_mode": "",
+            "object_lock_retain_until_date": "",
+            "override_provider": [],
+            "server_side_encryption": "AES256",
+            "source": "../scripts/transform_nyc_taxi_glue.py",
+            "source_hash": null,
+            "storage_class": "STANDARD",
+            "tags": {
+              "Environment": "dev",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "NYC Taxi ETL transformation script"
+            },
+            "tags_all": {
+              "Environment": "dev",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "NYC Taxi ETL transformation script"
+            },
+            "version_id": "QuYpDelj51f_qD7tlCHOYPVkXarHy8_v",
+            "website_redirect": ""
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "bnVsbA==",
+          "dependencies": [
+            "aws_s3_bucket.data_pipeline",
+            "random_id.bucket_suffix"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_s3_object",
+      "name": "raw_folder",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "acl": null,
+            "arn": "arn:aws:s3:::cloud-native-analytics-pipeline-d8e6ca17/raw/",
+            "bucket": "cloud-native-analytics-pipeline-d8e6ca17",
+            "bucket_key_enabled": false,
+            "cache_control": "",
+            "checksum_algorithm": null,
+            "checksum_crc32": "",
+            "checksum_crc32c": "",
+            "checksum_crc64nvme": "",
+            "checksum_sha1": "",
+            "checksum_sha256": "",
+            "content": null,
+            "content_base64": null,
+            "content_disposition": "",
+            "content_encoding": "",
+            "content_language": "",
+            "content_type": "application/x-directory",
+            "etag": "d41d8cd98f00b204e9800998ecf8427e",
+            "force_destroy": false,
+            "id": "raw/",
+            "key": "raw/",
+            "kms_key_id": null,
+            "metadata": {},
+            "object_lock_legal_hold_status": "",
+            "object_lock_mode": "",
+            "object_lock_retain_until_date": "",
+            "override_provider": [],
+            "server_side_encryption": "AES256",
+            "source": null,
+            "source_hash": null,
+            "storage_class": "STANDARD",
+            "tags": {
+              "Environment": "dev",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "Raw data storage"
+            },
+            "tags_all": {
+              "Environment": "dev",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "Raw data storage"
+            },
+            "version_id": "RhcSiUfgrZKXvLTblaHsjO9wVBUwrn2i",
+            "website_redirect": ""
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "bnVsbA==",
+          "dependencies": [
+            "aws_s3_bucket.data_pipeline",
+            "random_id.bucket_suffix"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_s3_object",
+      "name": "scripts_folder",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "acl": null,
+            "arn": "arn:aws:s3:::cloud-native-analytics-pipeline-d8e6ca17/scripts/",
+            "bucket": "cloud-native-analytics-pipeline-d8e6ca17",
+            "bucket_key_enabled": false,
+            "cache_control": "",
+            "checksum_algorithm": null,
+            "checksum_crc32": "",
+            "checksum_crc32c": "",
+            "checksum_crc64nvme": "",
+            "checksum_sha1": "",
+            "checksum_sha256": "",
+            "content": null,
+            "content_base64": null,
+            "content_disposition": "",
+            "content_encoding": "",
+            "content_language": "",
+            "content_type": "application/x-directory",
+            "etag": "d41d8cd98f00b204e9800998ecf8427e",
+            "force_destroy": false,
+            "id": "scripts/",
+            "key": "scripts/",
+            "kms_key_id": null,
+            "metadata": {},
+            "object_lock_legal_hold_status": "",
+            "object_lock_mode": "",
+            "object_lock_retain_until_date": "",
+            "override_provider": [],
+            "server_side_encryption": "AES256",
+            "source": null,
+            "source_hash": null,
+            "storage_class": "STANDARD",
+            "tags": {
+              "Environment": "dev",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "ETL scripts storage"
+            },
+            "tags_all": {
+              "Environment": "dev",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "ETL scripts storage"
+            },
+            "version_id": "quMI48h6uh20ImkFW9Sdl7lSj6tan9cI",
+            "website_redirect": ""
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "bnVsbA==",
+          "dependencies": [
+            "aws_s3_bucket.data_pipeline",
+            "random_id.bucket_suffix"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_s3_object",
+      "name": "staging_folder",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "acl": null,
+            "arn": "arn:aws:s3:::cloud-native-analytics-pipeline-d8e6ca17/staging/",
+            "bucket": "cloud-native-analytics-pipeline-d8e6ca17",
+            "bucket_key_enabled": false,
+            "cache_control": "",
+            "checksum_algorithm": null,
+            "checksum_crc32": "",
+            "checksum_crc32c": "",
+            "checksum_crc64nvme": "",
+            "checksum_sha1": "",
+            "checksum_sha256": "",
+            "content": null,
+            "content_base64": null,
+            "content_disposition": "",
+            "content_encoding": "",
+            "content_language": "",
+            "content_type": "application/x-directory",
+            "etag": "d41d8cd98f00b204e9800998ecf8427e",
+            "force_destroy": false,
+            "id": "staging/",
+            "key": "staging/",
+            "kms_key_id": null,
+            "metadata": {},
+            "object_lock_legal_hold_status": "",
+            "object_lock_mode": "",
+            "object_lock_retain_until_date": "",
+            "override_provider": [],
+            "server_side_encryption": "AES256",
+            "source": null,
+            "source_hash": null,
+            "storage_class": "STANDARD",
+            "tags": {
+              "Environment": "dev",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "Staging data storage"
+            },
+            "tags_all": {
+              "Environment": "dev",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "Staging data storage"
+            },
+            "version_id": "WU1GhfTbJ4IL2DMJuG7at94sxll483F7",
+            "website_redirect": ""
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "bnVsbA==",
+          "dependencies": [
+            "aws_s3_bucket.data_pipeline",
+            "random_id.bucket_suffix"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_security_group",
+      "name": "redshift_sg",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "arn": "arn:aws:ec2:us-east-1:439530517237:security-group/sg-013cc9c91e4f821a0",
+            "description": "Security group for Redshift cluster",
+            "egress": [
+              {
+                "cidr_blocks": [
+                  "0.0.0.0/0"
+                ],
+                "description": "All outbound traffic",
+                "from_port": 0,
+                "ipv6_cidr_blocks": [],
+                "prefix_list_ids": [],
+                "protocol": "-1",
+                "security_groups": [],
+                "self": false,
+                "to_port": 0
+              }
+            ],
+            "id": "sg-013cc9c91e4f821a0",
+            "ingress": [
+              {
+                "cidr_blocks": [
+                  "0.0.0.0/0"
+                ],
+                "description": "Redshift port access",
+                "from_port": 5439,
+                "ipv6_cidr_blocks": [],
+                "prefix_list_ids": [],
+                "protocol": "tcp",
+                "security_groups": [],
+                "self": false,
+                "to_port": 5439
+              }
+            ],
+            "name": "cloud-native-analytics-redshift-20250608195033268500000001",
+            "name_prefix": "cloud-native-analytics-redshift-",
+            "owner_id": "439530517237",
+            "revoke_rules_on_delete": false,
+            "tags": {
+              "Environment": "dev",
+              "Name": "cloud-native-analytics-redshift-sg",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "Data Engineering Portfolio"
+            },
+            "tags_all": {
+              "Environment": "dev",
+              "Name": "cloud-native-analytics-redshift-sg",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "Data Engineering Portfolio"
+            },
+            "timeouts": null,
+            "vpc_id": "vpc-0986ed387be5230fb"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsImRlbGV0ZSI6OTAwMDAwMDAwMDAwfSwic2NoZW1hX3ZlcnNpb24iOiIxIn0=",
+          "dependencies": [
+            "data.aws_vpc.default"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "aws_sns_topic",
+      "name": "pipeline_alerts",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "application_failure_feedback_role_arn": "",
+            "application_success_feedback_role_arn": "",
+            "application_success_feedback_sample_rate": 0,
+            "archive_policy": "",
+            "arn": "arn:aws:sns:us-east-1:439530517237:cloud-native-analytics-pipeline-alerts",
+            "beginning_archive_time": "",
+            "content_based_deduplication": false,
+            "delivery_policy": "",
+            "display_name": "",
+            "fifo_throughput_scope": "",
+            "fifo_topic": false,
+            "firehose_failure_feedback_role_arn": "",
+            "firehose_success_feedback_role_arn": "",
+            "firehose_success_feedback_sample_rate": 0,
+            "http_failure_feedback_role_arn": "",
+            "http_success_feedback_role_arn": "",
+            "http_success_feedback_sample_rate": 0,
+            "id": "arn:aws:sns:us-east-1:439530517237:cloud-native-analytics-pipeline-alerts",
+            "kms_master_key_id": "",
+            "lambda_failure_feedback_role_arn": "",
+            "lambda_success_feedback_role_arn": "",
+            "lambda_success_feedback_sample_rate": 0,
+            "name": "cloud-native-analytics-pipeline-alerts",
+            "name_prefix": "",
+            "owner": "439530517237",
+            "policy": "{\"Id\":\"__default_policy_ID\",\"Statement\":[{\"Action\":[\"SNS:GetTopicAttributes\",\"SNS:SetTopicAttributes\",\"SNS:AddPermission\",\"SNS:RemovePermission\",\"SNS:DeleteTopic\",\"SNS:Subscribe\",\"SNS:ListSubscriptionsByTopic\",\"SNS:Publish\"],\"Condition\":{\"StringEquals\":{\"AWS:SourceOwner\":\"439530517237\"}},\"Effect\":\"Allow\",\"Principal\":{\"AWS\":\"*\"},\"Resource\":\"arn:aws:sns:us-east-1:439530517237:cloud-native-analytics-pipeline-alerts\",\"Sid\":\"__default_statement_ID\"}],\"Version\":\"2008-10-17\"}",
+            "signature_version": 0,
+            "sqs_failure_feedback_role_arn": "",
+            "sqs_success_feedback_role_arn": "",
+            "sqs_success_feedback_sample_rate": 0,
+            "tags": {
+              "Environment": "dev",
+              "Name": "cloud-native-analytics-pipeline-alerts",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "Pipeline monitoring and alerting"
+            },
+            "tags_all": {
+              "Environment": "dev",
+              "Name": "cloud-native-analytics-pipeline-alerts",
+              "Owner": "yoadsimon",
+              "Project": "Cloud-Native-Analytics-Pipeline",
+              "Purpose": "Pipeline monitoring and alerting"
+            },
+            "tracing_config": ""
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "bnVsbA=="
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "random_id",
+      "name": "bucket_suffix",
+      "provider": "provider[\"registry.terraform.io/hashicorp/random\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "b64_std": "2ObKFw==",
+            "b64_url": "2ObKFw",
+            "byte_length": 4,
+            "dec": "3639003671",
+            "hex": "d8e6ca17",
+            "id": "2ObKFw",
+            "keepers": null,
+            "prefix": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0
+        }
+      ]
+    }
+  ],
+  "check_results": null
+}
